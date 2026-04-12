@@ -58,7 +58,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     final isSmall = screenHeight < 700;
     final titleSize = isSmall ? 22.0 : 26.0;
-    final logoSize = isSmall ? 60.0 : 80.0;
     final topPadding = isSmall ? 30.0 : 60.0;
     final sectionGap = isSmall ? 16.0 : 25.0;
     final largeSectionGap = isSmall ? 24.0 : 40.0;
@@ -96,13 +95,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   children: [
                     SizedBox(height: topPadding),
 
-                    // Logo icon — from .pen asset
+                    // Logo — huella + rayo + ANCESTRO text, composed like .pen
                     Image.asset(
-                      'assets/images/solar_logo_icon.png',
-                      width: logoSize,
-                      height: logoSize,
+                      'assets/images/logo_footprint.png',
+                      width: isSmall ? 55 : 68,
+                      height: isSmall ? 95 : 120,
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 12),
+                    Image.asset(
+                      'assets/images/logo_ancestro_text.png',
+                      width: isSmall ? 200 : 250,
+                    ),
+                    SizedBox(height: sectionGap),
 
                     // Title — matching .pen: fontSize 26, fontWeight 600, letterSpacing -1
                     Text(
