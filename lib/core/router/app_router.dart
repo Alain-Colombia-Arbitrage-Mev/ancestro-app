@@ -27,6 +27,9 @@ final routerProvider = Provider<GoRouter>((ref) {
           currentPath == RouteNames.verifyCode ||
           currentPath == RouteNames.resetPassword;
 
+      // Allow chat without authentication
+      if (currentPath == RouteNames.chat) return null;
+
       if (user == null && !isAuthRoute) return RouteNames.login;
       if (user == null) return null;
       if (isAuthRoute) {
