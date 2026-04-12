@@ -10,6 +10,7 @@ import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
 import '../../../../core/widgets/ancestro_stepper.dart';
+import '../../../support/presentation/widgets/chat_fab.dart';
 import '../providers/partner_onboarding_notifier.dart';
 
 class _PartnerOption {
@@ -84,6 +85,7 @@ class PartnerProfileScreen extends ConsumerWidget {
     final notifier = ref.read(partnerOnboardingProvider.notifier);
 
     return Scaffold(
+      floatingActionButton: const ChatFab(),
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(

@@ -9,6 +9,7 @@ import '../../features/auth/presentation/screens.dart';
 import '../../features/onboarding_solar/presentation/screens/screens.dart';
 import '../../features/onboarding_partner/presentation/screens/screens.dart';
 import '../../features/referral/presentation/screens/screens.dart';
+import '../../features/support/presentation/screens/chat_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
@@ -194,6 +195,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: RouteNames.referral,
         builder: (context, state) => const ReferralScreen(),
+      ),
+
+      // ── Chat ──
+      GoRoute(
+        path: RouteNames.chat,
+        builder: (context, state) => const ChatScreen(),
       ),
 
       // ── Home ──

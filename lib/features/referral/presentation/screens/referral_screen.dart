@@ -11,6 +11,7 @@ import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
 import '../../../../core/widgets/ancestro_loading.dart';
 import '../../domain/models/referral.dart';
+import '../../../support/presentation/widgets/chat_fab.dart';
 import '../providers/referral_notifier.dart';
 
 class ReferralScreen extends ConsumerStatefulWidget {
@@ -35,6 +36,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     final state = ref.watch(referralProvider);
 
     return Scaffold(
+      floatingActionButton: const ChatFab(),
       backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: IconButton(

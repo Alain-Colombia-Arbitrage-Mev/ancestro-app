@@ -11,6 +11,7 @@ import '../../../core/widgets/ancestro_button.dart';
 import '../../../core/widgets/ancestro_card.dart';
 import '../../../core/widgets/ancestro_input.dart';
 import '../../../core/widgets/social_login_buttons.dart';
+import '../../support/presentation/widgets/chat_fab.dart';
 import '../providers/auth_notifier.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
@@ -80,6 +81,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     });
 
     return Scaffold(
+      floatingActionButton: const ChatFab(),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary, size: 20),

@@ -10,6 +10,7 @@ import '../../../core/widgets/ancestro_button.dart';
 import '../../../core/widgets/ancestro_input.dart';
 import '../../../core/widgets/social_login_buttons.dart';
 import '../providers/auth_notifier.dart';
+import '../../support/presentation/widgets/chat_fab.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -59,6 +60,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final r = AppResponsive(context);
 
     return Scaffold(
+      floatingActionButton: const ChatFab(),
       body: Stack(
         children: [
           // Ambient glow — matching .pen: circular amber blur, opacity 0.02

@@ -9,6 +9,7 @@ import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
 import '../../domain/models/solar_onboarding_state.dart';
+import '../../../support/presentation/widgets/chat_fab.dart';
 import '../providers/solar_onboarding_notifier.dart';
 
 class ChooseFlowScreen extends ConsumerStatefulWidget {
@@ -25,6 +26,7 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
   Widget build(BuildContext context) {
     final r = AppResponsive(context);
     return Scaffold(
+      floatingActionButton: const ChatFab(),
       body: SafeArea(
         child: Column(
           children: [

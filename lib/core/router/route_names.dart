@@ -36,5 +36,6 @@ class RouteNames {
   static const partnerConfirm = '/onboarding/partner/confirm';
 
   static const referral = '/referral';
+  static const chat = '/chat';
   static const home = '/home';
 }
