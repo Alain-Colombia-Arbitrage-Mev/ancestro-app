@@ -1,3 +1,6 @@
+# Environment variables (secrets)
+dart_defines_prod.env
+
 # Miscellaneous
 *.class
 *.log

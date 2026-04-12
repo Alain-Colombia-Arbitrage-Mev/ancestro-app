@@ -1,13 +1,19 @@
 class Env {
   Env._();
 
-  static const bool useMocks = true;
+  /// Toggle mocks: pass --dart-define=USE_MOCKS=false to disable
+  static const bool useMocks =
+      bool.fromEnvironment('USE_MOCKS', defaultValue: true);
 
-  // Cognito config — replace with real values when connecting backend
-  static const String cognitoUserPoolId = 'us-east-1_XXXXXXXXX';
-  static const String cognitoClientId = 'xxxxxxxxxxxxxxxxxxxxxxxxxx';
-  static const String cognitoRegion = 'us-east-1';
+  // Cognito — injected at build time via --dart-define
+  static const String cognitoUserPoolId =
+      String.fromEnvironment('COGNITO_USER_POOL_ID');
+  static const String cognitoClientId =
+      String.fromEnvironment('COGNITO_CLIENT_ID');
+  static const String cognitoRegion =
+      String.fromEnvironment('COGNITO_REGION', defaultValue: 'us-east-1');
 
   // API
-  static const String apiBaseUrl = 'https://api.ancestro.ai/v1';
+  static const String apiBaseUrl =
+      String.fromEnvironment('API_BASE_URL', defaultValue: 'https://api.ancestro.ai/v1');
 }
