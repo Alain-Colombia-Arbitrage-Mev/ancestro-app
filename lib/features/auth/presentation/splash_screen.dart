@@ -33,7 +33,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         children: [
           // Background image — casa solar from .pen
           Image.asset(
-            'assets/images/splash_bg.png',
+            'assets/images/splash_bg.jpg',
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,

@@ -14,6 +14,11 @@ class AncestroApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Pre-cache critical images for fast loading
+    precacheImage(const AssetImage('assets/images/splash_bg.jpg'), context);
+    precacheImage(const AssetImage('assets/images/logo_footprint.png'), context);
+    precacheImage(const AssetImage('assets/images/logo_ancestro_text.png'), context);
+
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
       title: 'Ancestro',

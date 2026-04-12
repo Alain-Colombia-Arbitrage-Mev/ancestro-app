@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTypography {
   AppTypography._();
 
-  static String get _fontFamily => GoogleFonts.dmSans().fontFamily!;
+  static const String _fontFamily = 'DM Sans';
 
   static TextStyle get heading => TextStyle(
         fontFamily: _fontFamily,

@@ -5,46 +5,17 @@ import 'package:go_router/go_router.dart';
 import '../auth/auth_providers.dart';
 import '../auth/auth_user.dart';
 import 'route_names.dart';
-import '../../features/auth/presentation/splash_screen.dart';
-import '../../features/auth/presentation/login_screen.dart';
-import '../../features/auth/presentation/signup_screen.dart';
-import '../../features/auth/presentation/forgot_password_screen.dart';
-import '../../features/auth/presentation/otp_screen.dart';
-import '../../features/auth/presentation/reset_password_screen.dart';
-import '../../features/referral/presentation/screens/referral_screen.dart';
-// success_screen.dart is available for use in custom routes
-import '../../features/onboarding_solar/presentation/screens/choose_flow_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/intro_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/proposal_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/basic_info_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/property_info_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/almost_done_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/instant_proposal_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/confirm_service_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/credit_check_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/coverage_plan_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/reserve_system_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/reserving_spot_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/finances_doc_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/verify_identity_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/agreements_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/inner_agreement_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/last_step_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/property_review_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/schedule_inspection_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/confirm_inspection_screen.dart';
-import '../../features/onboarding_solar/presentation/screens/meet_inspector_screen.dart';
-import '../../features/onboarding_partner/presentation/screens/partner_profile_screen.dart';
-import '../../features/onboarding_partner/presentation/screens/partner_contact_screen.dart';
-import '../../features/onboarding_partner/presentation/screens/partner_details_screen.dart';
-import '../../features/onboarding_partner/presentation/screens/partner_confirm_screen.dart';
+import '../../features/auth/presentation/screens.dart';
+import '../../features/onboarding_solar/presentation/screens/screens.dart';
+import '../../features/onboarding_partner/presentation/screens/screens.dart';
+import '../../features/referral/presentation/screens/screens.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
 
   return GoRouter(
+    restorationScopeId: 'ancestro-router',
     initialLocation: RouteNames.splash,
-    debugLogDiagnostics: true,
     redirect: (context, state) {
       final user = authState.valueOrNull;
       final currentPath = state.matchedLocation;

@@ -69,19 +69,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           Positioned(
             right: -100,
             bottom: -50,
-            child: Container(
-              width: 610,
-              height: 610,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primary.withValues(alpha: 0.02),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.02),
-                    blurRadius: 580,
-                    spreadRadius: 100,
-                  ),
-                ],
+            child: RepaintBoundary(
+              child: Container(
+                width: 610,
+                height: 610,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary.withValues(alpha: 0.02),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primary.withValues(alpha: 0.02),
+                      blurRadius: 580,
+                      spreadRadius: 100,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
