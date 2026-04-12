@@ -29,9 +29,10 @@ class ProposalScreen extends ConsumerWidget {
             children: [
               AppBar(
                 backgroundColor: Colors.transparent,
+                elevation: 0,
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back,
-                      color: AppColors.textPrimary),
+                  icon: const Icon(Icons.arrow_back_ios,
+                      color: AppColors.textPrimary, size: 20),
                   onPressed: () => context.go(RouteNames.solarIntro),
                 ),
               ),

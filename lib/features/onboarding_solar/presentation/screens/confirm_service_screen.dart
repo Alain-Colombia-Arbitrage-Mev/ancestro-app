@@ -20,7 +20,7 @@ class ConfirmServiceScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary, size: 20),
           onPressed: () => context.go(RouteNames.solarInstantProposal),
         ),
         title: Text(

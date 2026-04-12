@@ -50,9 +50,9 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary, size: 20),
           onPressed: () {
             notifier.previousStep();
             context.go(RouteNames.partnerDetails);
