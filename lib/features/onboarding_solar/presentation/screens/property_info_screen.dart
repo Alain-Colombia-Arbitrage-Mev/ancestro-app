@@ -50,60 +50,68 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'About your property',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'Property Type',
-                style: AppTypography.label
-                    .copyWith(color: AppColors.textSecondary),
-              ),
-              const SizedBox(height: 8),
-              DropdownButtonFormField<PropertyType>(
-                initialValue: _propertyType,
-                dropdownColor: AppColors.surface,
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textPrimary),
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: AppColors.inputFill,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'About your property',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Property Type',
+                      style: AppTypography.label
+                          .copyWith(color: AppColors.textSecondary),
+                    ),
+                    const SizedBox(height: 8),
+                    DropdownButtonFormField<PropertyType>(
+                      initialValue: _propertyType,
+                      dropdownColor: AppColors.surface,
+                      style: AppTypography.body
+                          .copyWith(color: AppColors.textPrimary),
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: AppColors.inputFill,
+                      ),
+                      items: PropertyType.values.map((type) {
+                        return DropdownMenuItem(
+                          value: type,
+                          child: Text(_propertyTypeLabel(type)),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        if (value != null) setState(() => _propertyType = value);
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    AncestroInput(
+                      label: 'Roof Size (sq ft)',
+                      hint: 'e.g. 1500',
+                      controller: _roofSizeController,
+                      keyboardType: TextInputType.number,
+                      prefixIcon: Icons.roofing,
+                    ),
+                    const SizedBox(height: 16),
+                    AncestroInput(
+                      label: 'Monthly Consumption (kWh)',
+                      hint: 'e.g. 900',
+                      controller: _consumptionController,
+                      keyboardType: TextInputType.number,
+                      prefixIcon: Icons.electric_bolt,
+                    ),
+                  ],
                 ),
-                items: PropertyType.values.map((type) {
-                  return DropdownMenuItem(
-                    value: type,
-                    child: Text(_propertyTypeLabel(type)),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  if (value != null) setState(() => _propertyType = value);
-                },
               ),
-              const SizedBox(height: 16),
-              AncestroInput(
-                label: 'Roof Size (sq ft)',
-                hint: 'e.g. 1500',
-                controller: _roofSizeController,
-                keyboardType: TextInputType.number,
-                prefixIcon: Icons.roofing,
-              ),
-              const SizedBox(height: 16),
-              AncestroInput(
-                label: 'Monthly Consumption (kWh)',
-                hint: 'e.g. 900',
-                controller: _consumptionController,
-                keyboardType: TextInputType.number,
-                prefixIcon: Icons.electric_bolt,
-              ),
-              const Spacer(),
-              ListenableBuilder(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: ListenableBuilder(
                 listenable: Listenable.merge(
                     [_roofSizeController, _consumptionController]),
                 builder: (context, _) {
@@ -116,8 +124,7 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
                           .setPropertyInfo(PropertyInfo(
                             propertyType: _propertyType,
                             roofSizeSqFt:
-                                double.tryParse(_roofSizeController.text) ??
-                                    0,
+                                double.tryParse(_roofSizeController.text) ?? 0,
                             monthlyConsumptionKwh:
                                 double.tryParse(_consumptionController.text) ??
                                     0,
@@ -127,8 +134,8 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
                   );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

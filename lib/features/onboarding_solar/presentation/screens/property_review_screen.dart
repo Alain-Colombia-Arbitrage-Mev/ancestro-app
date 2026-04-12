@@ -29,62 +29,71 @@ class PropertyReviewScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Here\'s what we found',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Our review of your property photos is complete.',
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const SizedBox(height: 24),
-              ..._reviewResults.entries.map((entry) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: AncestroCard(
-                    child: Row(
-                      children: [
-                        const Icon(Icons.check_circle,
-                            color: AppColors.success, size: 24),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Here\'s what we found',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Our review of your property photos is complete.',
+                      style: AppTypography.body
+                          .copyWith(color: AppColors.textSecondary),
+                    ),
+                    const SizedBox(height: 24),
+                    ..._reviewResults.entries.map((entry) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: AncestroCard(
+                          child: Row(
                             children: [
-                              Text(
-                                entry.key,
-                                style: AppTypography.bodyMedium
-                                    .copyWith(color: AppColors.textPrimary),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                entry.value,
-                                style: AppTypography.caption
-                                    .copyWith(color: AppColors.textSecondary),
+                              const Icon(Icons.check_circle,
+                                  color: AppColors.success, size: 24),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      entry.key,
+                                      style: AppTypography.bodyMedium
+                                          .copyWith(
+                                              color: AppColors.textPrimary),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      entry.value,
+                                      style: AppTypography.caption.copyWith(
+                                          color: AppColors.textSecondary),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-              const Spacer(),
-              AncestroButton(
+                      );
+                    }),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Continue',
                 onPressed: () => context.go(RouteNames.solarSchedule),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

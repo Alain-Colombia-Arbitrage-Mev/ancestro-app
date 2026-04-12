@@ -30,41 +30,50 @@ class _AlmostDoneScreenState extends ConsumerState<AlmostDoneScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Container(
-                width: 80,
-                height: 80,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primaryTinted,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 48),
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primaryTinted,
+                        ),
+                        child: const Icon(
+                          Icons.check,
+                          size: 40,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        'Just one more step!',
+                        style: AppTypography.heading
+                            .copyWith(color: AppColors.textPrimary),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'We have everything we need to generate '
+                        'your personalized solar proposal.',
+                        textAlign: TextAlign.center,
+                        style: AppTypography.body
+                            .copyWith(color: AppColors.textSecondary),
+                      ),
+                    ],
+                  ),
                 ),
-                child: const Icon(
-                  Icons.check,
-                  size: 40,
-                  color: AppColors.primary,
-                ),
               ),
-              const SizedBox(height: 24),
-              Text(
-                'Just one more step!',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'We have everything we need to generate '
-                'your personalized solar proposal.',
-                textAlign: TextAlign.center,
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Generate My Proposal',
                 isLoading: _isLoading,
                 onPressed: () async {
@@ -77,8 +86,8 @@ class _AlmostDoneScreenState extends ConsumerState<AlmostDoneScreen> {
                   context.go(RouteNames.solarInstantProposal);
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

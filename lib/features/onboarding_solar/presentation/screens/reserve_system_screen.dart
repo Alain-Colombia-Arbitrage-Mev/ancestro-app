@@ -28,60 +28,68 @@ class ReserveSystemScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Payment Method',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 24),
-              AncestroCard(
-                child: Row(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 48,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: AppColors.surfaceVariant,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Icon(Icons.credit_card,
-                          color: AppColors.textTertiary, size: 20),
+                    Text(
+                      'Payment Method',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(height: 24),
+                    AncestroCard(
+                      child: Row(
                         children: [
-                          Text(
-                            '**** **** **** 4242',
-                            style: AppTypography.bodyMedium
-                                .copyWith(color: AppColors.textPrimary),
+                          Container(
+                            width: 48,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceVariant,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Icon(Icons.credit_card,
+                                color: AppColors.textTertiary, size: 20),
                           ),
-                          Text(
-                            'Visa - Expires 12/28',
-                            style: AppTypography.caption
-                                .copyWith(color: AppColors.textSecondary),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '**** **** **** 4242',
+                                  style: AppTypography.bodyMedium
+                                      .copyWith(color: AppColors.textPrimary),
+                                ),
+                                Text(
+                                  'Visa - Expires 12/28',
+                                  style: AppTypography.caption
+                                      .copyWith(color: AppColors.textSecondary),
+                                ),
+                              ],
+                            ),
                           ),
+                          const Icon(Icons.check_circle,
+                              color: AppColors.primary, size: 24),
                         ],
                       ),
                     ),
-                    const Icon(Icons.check_circle,
-                        color: AppColors.primary, size: 24),
                   ],
                 ),
               ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Reserve',
                 onPressed: () => context.go(RouteNames.solarReserving),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

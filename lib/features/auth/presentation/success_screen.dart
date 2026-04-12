@@ -33,44 +33,46 @@ class SuccessScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadii.large),
             border: Border.all(color: AppColors.surfaceBorder),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 64,
-                height: 64,
-                decoration: const BoxDecoration(
-                  color: AppColors.primaryTinted,
-                  shape: BoxShape.circle,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 64,
+                  height: 64,
+                  decoration: const BoxDecoration(
+                    color: AppColors.primaryTinted,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check_circle_outline,
+                    color: AppColors.primary,
+                    size: 32,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.check_circle_outline,
-                  color: AppColors.primary,
-                  size: 32,
+                const SizedBox(height: 24),
+                Text(
+                  title,
+                  style: AppTypography.subheading.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                title,
-                style: AppTypography.subheading.copyWith(
-                  color: AppColors.textPrimary,
+                const SizedBox(height: 8),
+                Text(
+                  message,
+                  style: AppTypography.body.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                message,
-                style: AppTypography.body.copyWith(
-                  color: AppColors.textSecondary,
+                const SizedBox(height: 24),
+                AncestroButton(
+                  label: buttonLabel,
+                  onPressed: () => context.go(navigateTo),
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
-              AncestroButton(
-                label: buttonLabel,
-                onPressed: () => context.go(navigateTo),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

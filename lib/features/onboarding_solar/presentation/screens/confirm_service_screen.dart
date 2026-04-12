@@ -32,42 +32,50 @@ class ConfirmServiceScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Service Summary',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 24),
-              if (proposal != null)
-                AncestroCard(
-                  child: Column(
-                    children: [
-                      _summaryRow('System Size',
-                          '${proposal.systemSizeKw.toStringAsFixed(1)} kW'),
-                      const SizedBox(height: 12),
-                      _summaryRow(
-                          'Panels', '${proposal.numberOfPanels}'),
-                      const SizedBox(height: 12),
-                      _summaryRow('Monthly Payment',
-                          '\$${proposal.monthlyPayment.toStringAsFixed(2)}'),
-                      const SizedBox(height: 12),
-                      _summaryRow('Coverage',
-                          '${proposal.coverageYears} Years'),
-                    ],
-                  ),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Service Summary',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 24),
+                    if (proposal != null)
+                      AncestroCard(
+                        child: Column(
+                          children: [
+                            _summaryRow('System Size',
+                                '${proposal.systemSizeKw.toStringAsFixed(1)} kW'),
+                            const SizedBox(height: 12),
+                            _summaryRow(
+                                'Panels', '${proposal.numberOfPanels}'),
+                            const SizedBox(height: 12),
+                            _summaryRow('Monthly Payment',
+                                '\$${proposal.monthlyPayment.toStringAsFixed(2)}'),
+                            const SizedBox(height: 12),
+                            _summaryRow('Coverage',
+                                '${proposal.coverageYears} Years'),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
-              const Spacer(),
-              AncestroButton(
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Confirm & Activate Services',
                 onPressed: () => context.go(RouteNames.solarCredit),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

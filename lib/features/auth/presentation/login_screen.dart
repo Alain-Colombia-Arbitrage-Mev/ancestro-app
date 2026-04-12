@@ -55,6 +55,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
     });
 
+    final screenHeight = MediaQuery.of(context).size.height;
+    final isSmall = screenHeight < 700;
+    final titleSize = isSmall ? 22.0 : 26.0;
+    final logoSize = isSmall ? 60.0 : 80.0;
+    final topPadding = isSmall ? 30.0 : 60.0;
+    final sectionGap = isSmall ? 16.0 : 25.0;
+    final largeSectionGap = isSmall ? 24.0 : 40.0;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -86,13 +94,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    const SizedBox(height: 60),
+                    SizedBox(height: topPadding),
 
                     // Logo icon — from .pen asset
                     Image.asset(
                       'assets/images/solar_logo_icon.png',
-                      width: 80,
-                      height: 80,
+                      width: logoSize,
+                      height: logoSize,
                     ),
                     const SizedBox(height: 20),
 
@@ -102,13 +110,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       textAlign: TextAlign.center,
                       style: AppTypography.heading.copyWith(
                         color: AppColors.textPrimary,
-                        fontSize: 26,
+                        fontSize: titleSize,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -1,
                         height: 1.38,
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    SizedBox(height: largeSectionGap),
 
                     // Email input — matching .pen structure
                     AncestroInput(
@@ -119,7 +127,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       enabled: !isLoading,
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: sectionGap),
 
                     // Password input
                     AncestroInput(
@@ -130,7 +138,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       prefixIcon: Icons.lock_outline,
                       enabled: !isLoading,
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: sectionGap),
 
                     // Log In button — .pen: height 55, cornerRadius 16, amber fill
                     AncestroButton(
@@ -138,7 +146,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       onPressed: _onLogin,
                       isLoading: isLoading,
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: sectionGap),
 
                     // Forgot password — .pen: fontSize 14, fontWeight 500, amber
                     TextButton(
@@ -153,7 +161,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: sectionGap),
 
                     // OR divider — .pen: line color #1f1f1f, text #6c6c6c
                     Row(
@@ -182,7 +190,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: sectionGap),
 
                     // Social login — .pen shows Google/Apple buttons with dark fill
                     SocialLoginButtons(
@@ -195,7 +203,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       },
                       onPhonePressed: () {},
                     ),
-                    const SizedBox(height: 40),
+                    SizedBox(height: largeSectionGap),
 
                     // Sign up link — .pen: "Don't have an account?" white + "Sign up" amber
                     Row(

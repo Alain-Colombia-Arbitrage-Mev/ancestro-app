@@ -64,39 +64,41 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              Text(
-                'Forgot Password',
-                style: AppTypography.heading.copyWith(
-                  color: AppColors.textPrimary,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                Text(
+                  'Forgot Password',
+                  style: AppTypography.heading.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Enter your email address and we will send you a verification code to reset your password.',
-                style: AppTypography.body.copyWith(
-                  color: AppColors.textSecondary,
+                const SizedBox(height: 8),
+                Text(
+                  'Enter your email address and we will send you a verification code to reset your password.',
+                  style: AppTypography.body.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 32),
-              AncestroInput(
-                label: 'Email',
-                hint: 'Enter your email',
-                controller: _emailController,
-                prefixIcon: Icons.email_outlined,
-                keyboardType: TextInputType.emailAddress,
-                enabled: !isLoading,
-              ),
-              const SizedBox(height: 24),
-              AncestroButton(
-                label: 'Send Code',
-                onPressed: _onSendCode,
-                isLoading: isLoading,
-              ),
-            ],
+                const SizedBox(height: 32),
+                AncestroInput(
+                  label: 'Email',
+                  hint: 'Enter your email',
+                  controller: _emailController,
+                  prefixIcon: Icons.email_outlined,
+                  keyboardType: TextInputType.emailAddress,
+                  enabled: !isLoading,
+                ),
+                const SizedBox(height: 24),
+                AncestroButton(
+                  label: 'Send Code',
+                  onPressed: _onSendCode,
+                  isLoading: isLoading,
+                ),
+              ],
+            ),
           ),
         ),
       ),

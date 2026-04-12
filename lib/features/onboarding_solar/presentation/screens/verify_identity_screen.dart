@@ -27,45 +27,53 @@ class VerifyIdentityScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Upload your ID',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Upload your ID',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Please upload the front and back of your government-issued ID.',
+                      style: AppTypography.body
+                          .copyWith(color: AppColors.textSecondary),
+                    ),
+                    const SizedBox(height: 32),
+                    _buildUploadButton(
+                      icon: Icons.credit_card,
+                      label: 'Upload ID Front',
+                      onTap: () {
+                        // Placeholder
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    _buildUploadButton(
+                      icon: Icons.credit_card,
+                      label: 'Upload ID Back',
+                      onTap: () {
+                        // Placeholder
+                      },
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Please upload the front and back of your government-issued ID.',
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const SizedBox(height: 32),
-              _buildUploadButton(
-                icon: Icons.credit_card,
-                label: 'Upload ID Front',
-                onTap: () {
-                  // Placeholder
-                },
-              ),
-              const SizedBox(height: 16),
-              _buildUploadButton(
-                icon: Icons.credit_card,
-                label: 'Upload ID Back',
-                onTap: () {
-                  // Placeholder
-                },
-              ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Continue',
                 onPressed: () => context.go(RouteNames.solarAgreements),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

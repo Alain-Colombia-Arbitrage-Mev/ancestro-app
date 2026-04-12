@@ -14,39 +14,48 @@ class IntroScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              const Icon(
-                Icons.solar_power,
-                size: 96,
-                color: AppColors.primary,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 48),
+                      const Icon(
+                        Icons.solar_power,
+                        size: 96,
+                        color: AppColors.primary,
+                      ),
+                      const SizedBox(height: 32),
+                      Text(
+                        'Your Solar Journey\nStarts Here',
+                        textAlign: TextAlign.center,
+                        style: AppTypography.heading
+                            .copyWith(color: AppColors.textPrimary),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'We\'ll guide you through every step to get clean, '
+                        'affordable energy for your home.',
+                        textAlign: TextAlign.center,
+                        style: AppTypography.body
+                            .copyWith(color: AppColors.textSecondary),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 32),
-              Text(
-                'Your Solar Journey\nStarts Here',
-                textAlign: TextAlign.center,
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'We\'ll guide you through every step to get clean, '
-                'affordable energy for your home.',
-                textAlign: TextAlign.center,
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Get Started',
                 onPressed: () => context.go(RouteNames.solarProposal),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

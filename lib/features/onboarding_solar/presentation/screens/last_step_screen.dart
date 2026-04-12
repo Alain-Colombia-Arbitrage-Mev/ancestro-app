@@ -23,53 +23,61 @@ class LastStepScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Upload Property Photos',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Upload Property Photos',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Take photos of the following areas of your property.',
+                      style: AppTypography.body
+                          .copyWith(color: AppColors.textSecondary),
+                    ),
+                    const SizedBox(height: 32),
+                    _buildCategoryButton(
+                      icon: Icons.roofing,
+                      label: 'Roof Front',
+                      category: PhotoCategory.roofFront,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildCategoryButton(
+                      icon: Icons.roofing,
+                      label: 'Roof Back',
+                      category: PhotoCategory.roofBack,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildCategoryButton(
+                      icon: Icons.electrical_services,
+                      label: 'Electrical Panel',
+                      category: PhotoCategory.electricalPanel,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildCategoryButton(
+                      icon: Icons.speed,
+                      label: 'Meter',
+                      category: PhotoCategory.meter,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Take photos of the following areas of your property.',
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const SizedBox(height: 32),
-              _buildCategoryButton(
-                icon: Icons.roofing,
-                label: 'Roof Front',
-                category: PhotoCategory.roofFront,
-              ),
-              const SizedBox(height: 12),
-              _buildCategoryButton(
-                icon: Icons.roofing,
-                label: 'Roof Back',
-                category: PhotoCategory.roofBack,
-              ),
-              const SizedBox(height: 12),
-              _buildCategoryButton(
-                icon: Icons.electrical_services,
-                label: 'Electrical Panel',
-                category: PhotoCategory.electricalPanel,
-              ),
-              const SizedBox(height: 12),
-              _buildCategoryButton(
-                icon: Icons.speed,
-                label: 'Meter',
-                category: PhotoCategory.meter,
-              ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Continue',
                 onPressed: () => context.go(RouteNames.solarPropertyReview),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

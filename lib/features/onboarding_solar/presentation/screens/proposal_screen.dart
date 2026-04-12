@@ -25,46 +25,56 @@ class ProposalScreen extends ConsumerWidget {
           ),
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                AppBar(
-                  backgroundColor: Colors.transparent,
-                  leading: IconButton(
-                    icon:
-                        const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-                    onPressed: () => context.go(RouteNames.solarIntro),
+          child: Column(
+            children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back,
+                      color: AppColors.textPrimary),
+                  onPressed: () => context.go(RouteNames.solarIntro),
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 48),
+                        const Icon(
+                          Icons.solar_power_outlined,
+                          size: 80,
+                          color: AppColors.primary,
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Let\'s Build Your\nSolar Proposal',
+                          textAlign: TextAlign.center,
+                          style: AppTypography.heading
+                              .copyWith(color: AppColors.textPrimary),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Answer a few questions and we\'ll create '
+                          'a personalized solar plan for your home.',
+                          textAlign: TextAlign.center,
+                          style: AppTypography.body
+                              .copyWith(color: AppColors.textSecondary),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const Spacer(),
-                const Icon(
-                  Icons.solar_power_outlined,
-                  size: 80,
-                  color: AppColors.primary,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Let\'s Build Your\nSolar Proposal',
-                  textAlign: TextAlign.center,
-                  style: AppTypography.heading
-                      .copyWith(color: AppColors.textPrimary),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  'Answer a few questions and we\'ll create '
-                  'a personalized solar plan for your home.',
-                  textAlign: TextAlign.center,
-                  style: AppTypography.body
-                      .copyWith(color: AppColors.textSecondary),
-                ),
-                const Spacer(),
-                AncestroButton(
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                child: AncestroButton(
                   label: 'Continue',
                   onPressed: () => context.go(RouteNames.solarBasicInfo),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -24,46 +24,54 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 32),
-              Text(
-                'What are you interested in?',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 32),
+                    Text(
+                      'What are you interested in?',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Select the service that best fits your needs.',
+                      style: AppTypography.body
+                          .copyWith(color: AppColors.textSecondary),
+                    ),
+                    const SizedBox(height: 32),
+                    _buildOption(
+                      icon: Icons.solar_power,
+                      title: 'Solar Energy',
+                      subtitle: 'Power your home with the sun',
+                      type: SystemType.solar,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildOption(
+                      icon: Icons.electric_car,
+                      title: 'EV Charging',
+                      subtitle: 'Charge your vehicle at home',
+                      type: SystemType.ev,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildOption(
+                      icon: Icons.bolt,
+                      title: 'Solar + EV',
+                      subtitle: 'The complete energy package',
+                      type: SystemType.both,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Select the service that best fits your needs.',
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const SizedBox(height: 32),
-              _buildOption(
-                icon: Icons.solar_power,
-                title: 'Solar Energy',
-                subtitle: 'Power your home with the sun',
-                type: SystemType.solar,
-              ),
-              const SizedBox(height: 12),
-              _buildOption(
-                icon: Icons.electric_car,
-                title: 'EV Charging',
-                subtitle: 'Charge your vehicle at home',
-                type: SystemType.ev,
-              ),
-              const SizedBox(height: 12),
-              _buildOption(
-                icon: Icons.bolt,
-                title: 'Solar + EV',
-                subtitle: 'The complete energy package',
-                type: SystemType.both,
-              ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Continue',
                 enabled: _selected != null,
                 onPressed: () {
@@ -73,8 +81,8 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
                   context.go(RouteNames.solarIntro);
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

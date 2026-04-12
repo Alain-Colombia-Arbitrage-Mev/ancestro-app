@@ -50,64 +50,76 @@ class _CreditCheckScreenState extends ConsumerState<CreditCheckScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: _isLoading
-              ? const Center(child: CircularProgressIndicator(color: AppColors.primary))
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator(color: AppColors.primary))
+            : Column(
                   children: [
-                    const Spacer(),
-                    Icon(
-                      isApproved ? Icons.check_circle : Icons.cancel,
-                      size: 80,
-                      color:
-                          isApproved ? AppColors.success : AppColors.error,
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      isApproved ? 'Approved!' : 'Not Approved',
-                      style: AppTypography.heading
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      isApproved
-                          ? 'Your credit has been approved. You\'re ready '
-                              'to proceed with your solar installation.'
-                          : 'Unfortunately, we couldn\'t approve your credit '
-                              'at this time. Please contact us for alternatives.',
-                      textAlign: TextAlign.center,
-                      style: AppTypography.body
-                          .copyWith(color: AppColors.textSecondary),
-                    ),
-                    if (isApproved) ...[
-                      const SizedBox(height: 32),
-                      Container(
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: AppColors.surfaceVariant,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Center(
-                          child: Text(
-                            'Production Chart Placeholder',
-                            style: AppTypography.caption
-                                .copyWith(color: AppColors.textTertiary),
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 48),
+                              Icon(
+                                isApproved
+                                    ? Icons.check_circle
+                                    : Icons.cancel,
+                                size: 80,
+                                color: isApproved
+                                    ? AppColors.success
+                                    : AppColors.error,
+                              ),
+                              const SizedBox(height: 24),
+                              Text(
+                                isApproved ? 'Approved!' : 'Not Approved',
+                                style: AppTypography.heading
+                                    .copyWith(color: AppColors.textPrimary),
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                isApproved
+                                    ? 'Your credit has been approved. You\'re ready '
+                                        'to proceed with your solar installation.'
+                                    : 'Unfortunately, we couldn\'t approve your credit '
+                                        'at this time. Please contact us for alternatives.',
+                                textAlign: TextAlign.center,
+                                style: AppTypography.body
+                                    .copyWith(color: AppColors.textSecondary),
+                              ),
+                              if (isApproved) ...[
+                                const SizedBox(height: 32),
+                                Container(
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.surfaceVariant,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Production Chart Placeholder',
+                                      style: AppTypography.caption.copyWith(
+                                          color: AppColors.textTertiary),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                    const Spacer(),
-                    AncestroButton(
-                      label: 'Continue',
-                      onPressed: isApproved
-                          ? () => context.go(RouteNames.solarCoverage)
-                          : null,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                      child: AncestroButton(
+                        label: 'Continue',
+                        onPressed: isApproved
+                            ? () => context.go(RouteNames.solarCoverage)
+                            : null,
+                      ),
                     ),
                   ],
                 ),
-        ),
       ),
     );
   }

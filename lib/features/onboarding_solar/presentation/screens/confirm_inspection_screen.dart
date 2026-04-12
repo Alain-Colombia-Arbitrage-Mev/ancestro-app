@@ -35,40 +35,48 @@ class ConfirmInspectionScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Appointment Summary',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 24),
-              if (inspection != null)
-                AncestroCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _infoRow(Icons.calendar_today, 'Date',
-                          dateFormat.format(inspection.date)),
-                      const SizedBox(height: 16),
-                      _infoRow(
-                          Icons.access_time, 'Time', inspection.timeSlot),
-                      const SizedBox(height: 16),
-                      _infoRow(Icons.location_on, 'Address',
-                          basicInfo?.address ?? 'N/A'),
-                    ],
-                  ),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Appointment Summary',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 24),
+                    if (inspection != null)
+                      AncestroCard(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _infoRow(Icons.calendar_today, 'Date',
+                                dateFormat.format(inspection.date)),
+                            const SizedBox(height: 16),
+                            _infoRow(Icons.access_time, 'Time',
+                                inspection.timeSlot),
+                            const SizedBox(height: 16),
+                            _infoRow(Icons.location_on, 'Address',
+                                basicInfo?.address ?? 'N/A'),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
-              const Spacer(),
-              AncestroButton(
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Confirm',
                 onPressed: () => context.go(RouteNames.solarInspector),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -68,87 +68,95 @@ class _ScheduleInspectionScreenState
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: _isLoading
-              ? const Center(
-                  child:
-                      CircularProgressIndicator(color: AppColors.primary))
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        child: _isLoading
+            ? const Center(
+                child:
+                    CircularProgressIndicator(color: AppColors.primary))
+            : Column(
                   children: [
-                    Text(
-                      'Select a Date',
-                      style: AppTypography.heading
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      height: 200,
-                      child: ListView.separated(
-                        itemCount: _dates.length,
-                        separatorBuilder: (_, _) =>
-                            const SizedBox(height: 8),
-                        itemBuilder: (context, index) {
-                          final date = _dates[index];
-                          final isSelected = _selectedDate == date;
-                          return AncestroCard(
-                            selected: isSelected,
-                            onTap: () =>
-                                setState(() => _selectedDate = date),
-                            child: Text(
-                              dateFormat.format(date),
-                              style: AppTypography.bodyMedium.copyWith(
-                                  color: AppColors.textPrimary),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Select a Date',
+                              style: AppTypography.heading
+                                  .copyWith(color: AppColors.textPrimary),
                             ),
-                          );
+                            const SizedBox(height: 16),
+                            SizedBox(
+                              height: 200,
+                              child: ListView.separated(
+                                itemCount: _dates.length,
+                                separatorBuilder: (_, _) =>
+                                    const SizedBox(height: 8),
+                                itemBuilder: (context, index) {
+                                  final date = _dates[index];
+                                  final isSelected = _selectedDate == date;
+                                  return AncestroCard(
+                                    selected: isSelected,
+                                    onTap: () =>
+                                        setState(() => _selectedDate = date),
+                                    child: Text(
+                                      dateFormat.format(date),
+                                      style: AppTypography.bodyMedium.copyWith(
+                                          color: AppColors.textPrimary),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            Text(
+                              'Select a Time Slot',
+                              style: AppTypography.bodyMedium
+                                  .copyWith(color: AppColors.textPrimary),
+                            ),
+                            const SizedBox(height: 8),
+                            DropdownButtonFormField<String>(
+                              initialValue: _selectedTimeSlot,
+                              dropdownColor: AppColors.surface,
+                              style: AppTypography.body
+                                  .copyWith(color: AppColors.textPrimary),
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor: AppColors.inputFill,
+                              ),
+                              items: _timeSlots.map((slot) {
+                                return DropdownMenuItem(
+                                  value: slot,
+                                  child: Text(slot),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                if (value != null) {
+                                  setState(() => _selectedTimeSlot = value);
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                      child: AncestroButton(
+                        label: 'Continue',
+                        enabled: _selectedDate != null,
+                        onPressed: () async {
+                          await ref
+                              .read(solarOnboardingProvider.notifier)
+                              .scheduleInspection(
+                                  _selectedDate!, _selectedTimeSlot);
+                          if (!context.mounted) return;
+                          context.go(RouteNames.solarConfirmInspection);
                         },
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'Select a Time Slot',
-                      style: AppTypography.bodyMedium
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
-                    const SizedBox(height: 8),
-                    DropdownButtonFormField<String>(
-                      initialValue: _selectedTimeSlot,
-                      dropdownColor: AppColors.surface,
-                      style: AppTypography.body
-                          .copyWith(color: AppColors.textPrimary),
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: AppColors.inputFill,
-                      ),
-                      items: _timeSlots.map((slot) {
-                        return DropdownMenuItem(
-                          value: slot,
-                          child: Text(slot),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        if (value != null) {
-                          setState(() => _selectedTimeSlot = value);
-                        }
-                      },
-                    ),
-                    const Spacer(),
-                    AncestroButton(
-                      label: 'Continue',
-                      enabled: _selectedDate != null,
-                      onPressed: () async {
-                        await ref
-                            .read(solarOnboardingProvider.notifier)
-                            .scheduleInspection(
-                                _selectedDate!, _selectedTimeSlot);
-                        if (!context.mounted) return;
-                        context.go(RouteNames.solarConfirmInspection);
-                      },
-                    ),
                   ],
                 ),
-        ),
       ),
     );
   }

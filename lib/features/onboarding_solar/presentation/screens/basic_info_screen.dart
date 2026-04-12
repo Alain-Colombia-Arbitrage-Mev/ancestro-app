@@ -52,40 +52,48 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Tell us about yourself',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Tell us about yourself',
+                      style: AppTypography.heading
+                          .copyWith(color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 24),
+                    AncestroInput(
+                      label: 'Full Name',
+                      hint: 'John Doe',
+                      controller: _nameController,
+                      prefixIcon: Icons.person_outline,
+                    ),
+                    const SizedBox(height: 16),
+                    AncestroInput(
+                      label: 'Phone Number',
+                      hint: '(555) 000-0000',
+                      controller: _phoneController,
+                      prefixIcon: Icons.phone_outlined,
+                      keyboardType: TextInputType.phone,
+                    ),
+                    const SizedBox(height: 16),
+                    AncestroInput(
+                      label: 'Property Address',
+                      hint: '123 Main St, City, State',
+                      controller: _addressController,
+                      prefixIcon: Icons.location_on_outlined,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 24),
-              AncestroInput(
-                label: 'Full Name',
-                hint: 'John Doe',
-                controller: _nameController,
-                prefixIcon: Icons.person_outline,
-              ),
-              const SizedBox(height: 16),
-              AncestroInput(
-                label: 'Phone Number',
-                hint: '(555) 000-0000',
-                controller: _phoneController,
-                prefixIcon: Icons.phone_outlined,
-                keyboardType: TextInputType.phone,
-              ),
-              const SizedBox(height: 16),
-              AncestroInput(
-                label: 'Property Address',
-                hint: '123 Main St, City, State',
-                controller: _addressController,
-                prefixIcon: Icons.location_on_outlined,
-              ),
-              const Spacer(),
-              ListenableBuilder(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: ListenableBuilder(
                 listenable: Listenable.merge(
                     [_nameController, _phoneController, _addressController]),
                 builder: (context, _) {
@@ -105,8 +113,8 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
                   );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

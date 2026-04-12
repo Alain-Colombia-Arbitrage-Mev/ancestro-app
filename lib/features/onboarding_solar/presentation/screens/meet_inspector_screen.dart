@@ -26,54 +26,64 @@ class MeetInspectorScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Container(
-                width: 96,
-                height: 96,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.surfaceVariant,
-                ),
-                child: const Icon(
-                  Icons.person,
-                  size: 48,
-                  color: AppColors.textTertiary,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 48),
+                      Container(
+                        width: 96,
+                        height: 96,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.surfaceVariant,
+                        ),
+                        child: const Icon(
+                          Icons.person,
+                          size: 48,
+                          color: AppColors.textTertiary,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        inspection?.inspectorName ?? 'Your Inspector',
+                        style: AppTypography.heading
+                            .copyWith(color: AppColors.textPrimary),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Solar Installation Inspector',
+                        style: AppTypography.body
+                            .copyWith(color: AppColors.textSecondary),
+                      ),
+                      const SizedBox(height: 16),
+                      if (inspection?.inspectorPhone != null)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.phone,
+                                color: AppColors.primary, size: 18),
+                            const SizedBox(width: 8),
+                            Text(
+                              inspection!.inspectorPhone!,
+                              style: AppTypography.bodyMedium
+                                  .copyWith(color: AppColors.textPrimary),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 24),
-              Text(
-                inspection?.inspectorName ?? 'Your Inspector',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Solar Installation Inspector',
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              const SizedBox(height: 16),
-              if (inspection?.inspectorPhone != null)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.phone,
-                        color: AppColors.primary, size: 18),
-                    const SizedBox(width: 8),
-                    Text(
-                      inspection!.inspectorPhone!,
-                      style: AppTypography.bodyMedium
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
-                  ],
-                ),
-              const Spacer(),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: AncestroButton(
                 label: 'Done',
                 onPressed: () async {
                   await ref
@@ -84,8 +94,8 @@ class MeetInspectorScreen extends ConsumerWidget {
                   }
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
