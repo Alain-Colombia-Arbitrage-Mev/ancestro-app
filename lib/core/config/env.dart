@@ -1,9 +1,9 @@
 class Env {
   Env._();
 
-  /// Toggle mocks: pass --dart-define=USE_MOCKS=false to disable
+  /// Toggle mocks: pass --dart-define=USE_MOCKS=true to enable
   static const bool useMocks =
-      bool.fromEnvironment('USE_MOCKS', defaultValue: true);
+      bool.fromEnvironment('USE_MOCKS', defaultValue: false);
 
   // Cognito — injected at build time via --dart-define
   static const String cognitoUserPoolId =
