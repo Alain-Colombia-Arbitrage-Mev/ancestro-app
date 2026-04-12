@@ -34,7 +34,7 @@ class AncestroButton extends StatelessWidget {
     if (_isGhost) {
       return SizedBox(
         width: double.infinity,
-        height: 52,
+        height: 55,
         child: OutlinedButton(
           onPressed: enabled && !isLoading ? onPressed : null,
           style: OutlinedButton.styleFrom(

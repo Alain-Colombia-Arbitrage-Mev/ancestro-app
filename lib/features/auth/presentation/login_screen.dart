@@ -56,147 +56,180 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
 
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              const SizedBox(height: 48),
-              // Logo
-              Icon(
-                Icons.energy_savings_leaf,
-                color: AppColors.primary,
-                size: 48,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'ANCESTRO',
-                style: AppTypography.heading.copyWith(
-                  color: AppColors.textPrimary,
-                  letterSpacing: 4,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Welcome to the Barefoot Tribe\nEnergy. Storage. Mobility. Unified',
-                textAlign: TextAlign.center,
-                style: AppTypography.body.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 48),
-
-              // Email input
-              AncestroInput(
-                label: 'Email',
-                hint: 'Enter your email',
-                controller: _emailController,
-                prefixIcon: Icons.email_outlined,
-                keyboardType: TextInputType.emailAddress,
-                enabled: !isLoading,
-              ),
-              const SizedBox(height: 16),
-
-              // Password input
-              AncestroInput(
-                label: 'Password',
-                hint: 'Enter your password',
-                controller: _passwordController,
-                isPassword: true,
-                prefixIcon: Icons.lock_outline,
-                enabled: !isLoading,
-              ),
-              const SizedBox(height: 24),
-
-              // Log In button
-              AncestroButton(
-                label: 'Log In',
-                onPressed: _onLogin,
-                isLoading: isLoading,
-              ),
-              const SizedBox(height: 12),
-
-              // Forgot password
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: isLoading
-                      ? null
-                      : () => context.push(RouteNames.forgotPassword),
-                  child: Text(
-                    'Forgot Password?',
-                    style: AppTypography.caption.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // OR divider
-              Row(
-                children: [
-                  const Expanded(
-                    child: Divider(color: AppColors.surfaceBorder),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'OR',
-                      style: AppTypography.caption.copyWith(
-                        color: AppColors.textTertiary,
-                      ),
-                    ),
-                  ),
-                  const Expanded(
-                    child: Divider(color: AppColors.surfaceBorder),
+      body: Stack(
+        children: [
+          // Ambient glow — matching .pen: circular amber blur, opacity 0.02
+          Positioned(
+            right: -100,
+            bottom: -50,
+            child: Container(
+              width: 610,
+              height: 610,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary.withValues(alpha: 0.02),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.02),
+                    blurRadius: 580,
+                    spreadRadius: 100,
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-
-              // Social login
-              SocialLoginButtons(
-                isLoading: isLoading,
-                onGooglePressed: () {
-                  ref.read(authNotifierProvider.notifier).signInWithGoogle();
-                },
-                onApplePressed: () {
-                  ref.read(authNotifierProvider.notifier).signInWithApple();
-                },
-                onPhonePressed: () {
-                  // Phone login would open a phone input dialog
-                },
-              ),
-              const SizedBox(height: 32),
-
-              // Sign up link
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account? ",
-                    style: AppTypography.body.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: isLoading
-                        ? null
-                        : () => context.push(RouteNames.signup),
-                    child: Text(
-                      'Sign up',
-                      style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
-            ],
+            ),
           ),
-        ),
+
+          // Main content
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 60),
+
+                    // Logo icon — from .pen asset
+                    Image.asset(
+                      'assets/images/solar_logo_icon.png',
+                      width: 80,
+                      height: 80,
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Title — matching .pen: fontSize 26, fontWeight 600, letterSpacing -1
+                    Text(
+                      'Welcome to the Barefoot Tribe\nEnergy. Storage. Mobility. Unified',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.heading.copyWith(
+                        color: AppColors.textPrimary,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -1,
+                        height: 1.38,
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+
+                    // Email input — matching .pen structure
+                    AncestroInput(
+                      label: 'Email',
+                      hint: 'Email address',
+                      controller: _emailController,
+                      prefixIcon: Icons.email_outlined,
+                      keyboardType: TextInputType.emailAddress,
+                      enabled: !isLoading,
+                    ),
+                    const SizedBox(height: 25),
+
+                    // Password input
+                    AncestroInput(
+                      label: 'Password',
+                      hint: 'Password',
+                      controller: _passwordController,
+                      isPassword: true,
+                      prefixIcon: Icons.lock_outline,
+                      enabled: !isLoading,
+                    ),
+                    const SizedBox(height: 25),
+
+                    // Log In button — .pen: height 55, cornerRadius 16, amber fill
+                    AncestroButton(
+                      label: 'Log In',
+                      onPressed: _onLogin,
+                      isLoading: isLoading,
+                    ),
+                    const SizedBox(height: 25),
+
+                    // Forgot password — .pen: fontSize 14, fontWeight 500, amber
+                    TextButton(
+                      onPressed: isLoading
+                          ? null
+                          : () => context.push(RouteNames.forgotPassword),
+                      child: Text(
+                        'Forgot Password?',
+                        style: AppTypography.bodyMedium.copyWith(
+                          color: AppColors.primary,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+
+                    // OR divider — .pen: line color #1f1f1f, text #6c6c6c
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 1,
+                            color: AppColors.surfaceVariant,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'OR',
+                            style: AppTypography.body.copyWith(
+                              color: AppColors.placeholderText,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 1,
+                            color: AppColors.surfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 25),
+
+                    // Social login — .pen shows Google/Apple buttons with dark fill
+                    SocialLoginButtons(
+                      isLoading: isLoading,
+                      onGooglePressed: () {
+                        ref.read(authNotifierProvider.notifier).signInWithGoogle();
+                      },
+                      onApplePressed: () {
+                        ref.read(authNotifierProvider.notifier).signInWithApple();
+                      },
+                      onPhonePressed: () {},
+                    ),
+                    const SizedBox(height: 40),
+
+                    // Sign up link — .pen: "Don't have an account?" white + "Sign up" amber
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: AppTypography.bodyMedium.copyWith(
+                            color: AppColors.textPrimary,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: isLoading
+                              ? null
+                              : () => context.push(RouteNames.signup),
+                          child: Text(
+                            'Sign up',
+                            style: AppTypography.bodyMedium.copyWith(
+                              color: AppColors.primary,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 32),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

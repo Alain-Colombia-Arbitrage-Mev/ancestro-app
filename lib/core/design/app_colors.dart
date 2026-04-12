@@ -12,9 +12,14 @@ class AppColors {
   static const Color surfaceBorder = Color(0x1AFFFFFF);
   static const Color inputBorder = Color(0x0DFFFFFF);
 
-  // Fills
-  static const Color inputFill = Color(0x14FFFFFF);
+  // Fills — matching .pen exactly
+  static const Color inputFill = Color(0xFF141414);
+  static const Color inputStroke = Color(0xFF1F1F1F);
   static const Color navFill = Color(0x33141414);
+
+  // Labels
+  static const Color labelText = Color(0xE5FFFFFF);
+  static const Color placeholderText = Color(0xFF6C6C6C);
 
   // Primary (amber/gold)
   static const Color primary = Color(0xFFF8B03B);
