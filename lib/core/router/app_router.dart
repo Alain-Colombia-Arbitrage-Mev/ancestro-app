@@ -11,7 +11,33 @@ import '../../features/auth/presentation/signup_screen.dart';
 import '../../features/auth/presentation/forgot_password_screen.dart';
 import '../../features/auth/presentation/otp_screen.dart';
 import '../../features/auth/presentation/reset_password_screen.dart';
+import '../../features/referral/presentation/screens/referral_screen.dart';
 // success_screen.dart is available for use in custom routes
+import '../../features/onboarding_solar/presentation/screens/choose_flow_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/intro_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/proposal_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/basic_info_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/property_info_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/almost_done_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/instant_proposal_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/confirm_service_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/credit_check_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/coverage_plan_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/reserve_system_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/reserving_spot_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/finances_doc_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/verify_identity_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/agreements_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/inner_agreement_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/last_step_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/property_review_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/schedule_inspection_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/confirm_inspection_screen.dart';
+import '../../features/onboarding_solar/presentation/screens/meet_inspector_screen.dart';
+import '../../features/onboarding_partner/presentation/screens/partner_profile_screen.dart';
+import '../../features/onboarding_partner/presentation/screens/partner_contact_screen.dart';
+import '../../features/onboarding_partner/presentation/screens/partner_details_screen.dart';
+import '../../features/onboarding_partner/presentation/screens/partner_confirm_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
@@ -89,139 +115,114 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ── Solar onboarding routes ──
       GoRoute(
         path: RouteNames.solarOnboarding,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Onboarding'),
+        builder: (context, state) => const ChooseFlowScreen(),
       ),
       GoRoute(
         path: RouteNames.solarIntro,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Intro'),
+        builder: (context, state) => const IntroScreen(),
       ),
       GoRoute(
         path: RouteNames.solarProposal,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Proposal'),
+        builder: (context, state) => const ProposalScreen(),
       ),
       GoRoute(
         path: RouteNames.solarBasicInfo,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Basic Info'),
+        builder: (context, state) => const BasicInfoScreen(),
       ),
       GoRoute(
         path: RouteNames.solarProperty,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Property'),
+        builder: (context, state) => const PropertyInfoScreen(),
       ),
       GoRoute(
         path: RouteNames.solarAlmostDone,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Almost Done'),
+        builder: (context, state) => const AlmostDoneScreen(),
       ),
       GoRoute(
         path: RouteNames.solarInstantProposal,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Instant Proposal'),
+        builder: (context, state) => const InstantProposalScreen(),
       ),
       GoRoute(
         path: RouteNames.solarConfirm,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Confirm'),
+        builder: (context, state) => const ConfirmServiceScreen(),
       ),
       GoRoute(
         path: RouteNames.solarCredit,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Credit'),
+        builder: (context, state) => const CreditCheckScreen(),
       ),
       GoRoute(
         path: RouteNames.solarCoverage,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Coverage'),
+        builder: (context, state) => const CoveragePlanScreen(),
       ),
       GoRoute(
         path: RouteNames.solarReserve,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Reserve'),
+        builder: (context, state) => const ReserveSystemScreen(),
       ),
       GoRoute(
         path: RouteNames.solarReserving,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Reserving'),
+        builder: (context, state) => const ReservingSpotScreen(),
       ),
       GoRoute(
         path: RouteNames.solarFinances,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Finances'),
+        builder: (context, state) => const FinancesDocScreen(),
       ),
       GoRoute(
         path: RouteNames.solarVerifyIdentity,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Verify Identity'),
+        builder: (context, state) => const VerifyIdentityScreen(),
       ),
       GoRoute(
         path: RouteNames.solarAgreements,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Agreements'),
+        builder: (context, state) => const AgreementsScreen(),
       ),
       GoRoute(
         path: RouteNames.solarInnerAgreement,
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
-          return _PlaceholderScreen(title: 'Agreement $id');
+          return InnerAgreementScreen(agreementId: id);
         },
       ),
       GoRoute(
         path: RouteNames.solarLastStep,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Last Step'),
+        builder: (context, state) => const LastStepScreen(),
       ),
       GoRoute(
         path: RouteNames.solarPropertyReview,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Property Review'),
+        builder: (context, state) => const PropertyReviewScreen(),
       ),
       GoRoute(
         path: RouteNames.solarSchedule,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Schedule'),
+        builder: (context, state) => const ScheduleInspectionScreen(),
       ),
       GoRoute(
         path: RouteNames.solarConfirmInspection,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Confirm Inspection'),
+        builder: (context, state) => const ConfirmInspectionScreen(),
       ),
       GoRoute(
         path: RouteNames.solarInspector,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Solar Inspector'),
+        builder: (context, state) => const MeetInspectorScreen(),
       ),
 
       // ── Partner onboarding routes ──
       GoRoute(
         path: RouteNames.partnerProfile,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Partner Profile'),
+        builder: (context, state) => const PartnerProfileScreen(),
       ),
       GoRoute(
         path: RouteNames.partnerContact,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Partner Contact'),
+        builder: (context, state) => const PartnerContactScreen(),
       ),
       GoRoute(
         path: RouteNames.partnerDetails,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Partner Details'),
+        builder: (context, state) => const PartnerDetailsScreen(),
       ),
       GoRoute(
         path: RouteNames.partnerConfirm,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Partner Confirm'),
+        builder: (context, state) => const PartnerConfirmScreen(),
       ),
 
       // ── Referral ──
       GoRoute(
         path: RouteNames.referral,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Referral'),
+        builder: (context, state) => const ReferralScreen(),
       ),
 
       // ── Home ──

@@ -29,7 +29,7 @@ class ReferralState {
   final bool isLoading;
 
   const ReferralState({
-    required this.code,
+    this.code = '',
     this.referrals = const [],
     this.isLoading = false,
   });
