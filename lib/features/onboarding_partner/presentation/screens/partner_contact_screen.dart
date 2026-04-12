@@ -66,8 +66,9 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const AncestroStepper(totalSteps: 4, currentStep: 1),
               SizedBox(height: r.spacingLG),
@@ -76,12 +77,14 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
                   children: [
                     Text(
                       'Contact Information',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
                     SizedBox(height: r.spacingXS),
                     Text(
                       'Tell us how to reach you',
+                      textAlign: TextAlign.center,
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
@@ -152,7 +155,7 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
                   context.go(RouteNames.partnerDetails);
                 },
               ),
-              SizedBox(height: r.spacingLG),
+              const SizedBox(height: 24),
             ],
           ),
         ),

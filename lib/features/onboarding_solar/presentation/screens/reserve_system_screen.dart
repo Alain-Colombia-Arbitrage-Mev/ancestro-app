@@ -33,16 +33,22 @@ class ReserveSystemScreen extends ConsumerWidget {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Payment Method',
-                      style: AppTypography.heading
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Payment Method',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading
+                                .copyWith(color: AppColors.textPrimary),
+                          ),
                     SizedBox(height: r.spacingLG),
                     AncestroCard(
                       child: Row(
@@ -80,12 +86,15 @@ class ReserveSystemScreen extends ConsumerWidget {
                         ],
                       ),
                     ),
-                  ],
-                ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Reserve',
                 onPressed: () => context.go(RouteNames.solarReserving),

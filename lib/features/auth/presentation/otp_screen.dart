@@ -144,124 +144,137 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: r.spacingMD),
-                Text(
-                  'Verify Code',
-                  style: AppTypography.heading.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                SizedBox(height: r.spacingXS),
-                Text(
-                  'Enter the 6-digit code sent to ${widget.email}',
-                  style: AppTypography.body.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                SizedBox(height: r.spacingXL),
-
-                // OTP boxes
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(AppConstants.otpLength, (index) {
-                    return Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: index == 0 ? 0 : 4,
-                          right: index == AppConstants.otpLength - 1 ? 0 : 4,
-                        ),
-                        child: SizedBox(
-                          height: 56,
-                          child: TextField(
-                            controller: _controllers[index],
-                            focusNode: _focusNodes[index],
-                            keyboardType: TextInputType.number,
+        child: Column(
+          children: [
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Verify Code',
                             textAlign: TextAlign.center,
-                            maxLength: 1,
-                            enabled: !isLoading,
                             style: AppTypography.heading.copyWith(
                               color: AppColors.textPrimary,
                             ),
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                            decoration: InputDecoration(
-                              counterText: '',
-                              contentPadding: EdgeInsets.zero,
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(AppRadii.small),
-                                borderSide: BorderSide(
-                                  color: _controllers[index].text.isNotEmpty
-                                      ? AppColors.primary
-                                      : AppColors.inputBorder,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(AppRadii.small),
-                                borderSide: const BorderSide(
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(AppRadii.small),
-                                borderSide: BorderSide(
-                                  color: _controllers[index].text.isNotEmpty
-                                      ? AppColors.primary
-                                      : AppColors.inputBorder,
-                                ),
-                              ),
-                              filled: true,
-                              fillColor: AppColors.inputFill,
-                            ),
-                            onChanged: (value) => _onDigitChanged(index, value),
                           ),
-                        ),
+                          SizedBox(height: r.spacingXS),
+                          Text(
+                            'Enter the 6-digit code sent to ${widget.email}',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                          SizedBox(height: r.spacingXL),
+
+                          // OTP boxes
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(AppConstants.otpLength, (index) {
+                              return Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: index == 0 ? 0 : 4,
+                                    right: index == AppConstants.otpLength - 1 ? 0 : 4,
+                                  ),
+                                  child: SizedBox(
+                                    height: 56,
+                                    child: TextField(
+                                      controller: _controllers[index],
+                                      focusNode: _focusNodes[index],
+                                      keyboardType: TextInputType.number,
+                                      textAlign: TextAlign.center,
+                                      maxLength: 1,
+                                      enabled: !isLoading,
+                                      style: AppTypography.heading.copyWith(
+                                        color: AppColors.textPrimary,
+                                      ),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
+                                      decoration: InputDecoration(
+                                        counterText: '',
+                                        contentPadding: EdgeInsets.zero,
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(AppRadii.small),
+                                          borderSide: BorderSide(
+                                            color: _controllers[index].text.isNotEmpty
+                                                ? AppColors.primary
+                                                : AppColors.inputBorder,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(AppRadii.small),
+                                          borderSide: const BorderSide(
+                                            color: AppColors.primary,
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(AppRadii.small),
+                                          borderSide: BorderSide(
+                                            color: _controllers[index].text.isNotEmpty
+                                                ? AppColors.primary
+                                                : AppColors.inputBorder,
+                                          ),
+                                        ),
+                                        filled: true,
+                                        fillColor: AppColors.inputFill,
+                                      ),
+                                      onChanged: (value) => _onDigitChanged(index, value),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                          ),
+                          SizedBox(height: r.spacingLG),
+
+                          // Resend
+                          Center(
+                            child: _canResend
+                                ? GestureDetector(
+                                    onTap: _onResend,
+                                    child: Text(
+                                      "Didn't get the code yet? Resend",
+                                      style: AppTypography.caption.copyWith(
+                                        color: AppColors.primary,
+                                      ),
+                                    ),
+                                  )
+                                : Text(
+                                    "Didn't get the code yet? Resend (${_formatTime(_secondsRemaining)})",
+                                    style: AppTypography.caption.copyWith(
+                                      color: AppColors.textTertiary,
+                                    ),
+                                  ),
+                          ),
+                        ],
                       ),
-                    );
-                  }),
-                ),
-                SizedBox(height: r.spacingLG),
-
-                // Resend
-                Center(
-                  child: _canResend
-                      ? GestureDetector(
-                          onTap: _onResend,
-                          child: Text(
-                            "Didn't get the code yet? Resend",
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.primary,
-                            ),
-                          ),
-                        )
-                      : Text(
-                          "Didn't get the code yet? Resend (${_formatTime(_secondsRemaining)})",
-                          style: AppTypography.caption.copyWith(
-                            color: AppColors.textTertiary,
-                          ),
-                        ),
-                ),
-                SizedBox(height: r.spacingXL),
-
-                // Verify button
-                AncestroButton(
-                  label: 'Verify',
-                  onPressed: _onVerify,
-                  isLoading: isLoading,
-                  enabled: _code.length == AppConstants.otpLength,
-                ),
-              ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              child: AncestroButton(
+                label: 'Verify',
+                onPressed: _onVerify,
+                isLoading: isLoading,
+                enabled: _code.length == AppConstants.otpLength,
+              ),
+            ),
+          ],
         ),
       ),
     );

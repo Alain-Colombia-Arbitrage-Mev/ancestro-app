@@ -50,8 +50,9 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const AncestroStepper(totalSteps: 4, currentStep: 2),
               SizedBox(height: r.spacingLG),
@@ -60,12 +61,14 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
                   children: [
                     Text(
                       'Tell us more',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
                     SizedBox(height: r.spacingXS),
                     Text(
                       'Provide details specific to your partner type',
+                      textAlign: TextAlign.center,
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
@@ -96,7 +99,7 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
                   context.go(RouteNames.partnerConfirm);
                 },
               ),
-              SizedBox(height: r.spacingLG),
+              const SizedBox(height: 24),
             ],
           ),
         ),

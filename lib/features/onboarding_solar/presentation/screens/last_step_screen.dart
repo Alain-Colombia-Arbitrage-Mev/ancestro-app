@@ -29,18 +29,20 @@ class LastStepScreen extends ConsumerWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       'Upload Property Photos',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
                     SizedBox(height: r.spacingXS),
                     Text(
                       'Take photos of the following areas of your property.',
+                      textAlign: TextAlign.center,
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
@@ -73,7 +75,7 @@ class LastStepScreen extends ConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Continue',
                 onPressed: () => context.go(RouteNames.solarPropertyReview),

@@ -66,44 +66,59 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: r.spacingMD),
-                Text(
-                  'Forgot Password',
-                  style: AppTypography.heading.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                SizedBox(height: r.spacingXS),
-                Text(
-                  'Enter your email address and we will send you a verification code to reset your password.',
-                  style: AppTypography.body.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                SizedBox(height: r.spacingXL),
-                AncestroInput(
-                  label: 'Email',
-                  hint: 'Enter your email',
-                  controller: _emailController,
-                  prefixIcon: Icons.email_outlined,
-                  keyboardType: TextInputType.emailAddress,
-                  enabled: !isLoading,
-                ),
-                SizedBox(height: r.spacingLG),
-                AncestroButton(
-                  label: 'Send Code',
-                  onPressed: _onSendCode,
-                  isLoading: isLoading,
-                ),
-              ],
+        child: Column(
+          children: [
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Forgot Password',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading.copyWith(
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                          SizedBox(height: r.spacingXS),
+                          Text(
+                            'Enter your email address and we will send you a verification code to reset your password.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                          SizedBox(height: r.spacingXL),
+                          AncestroInput(
+                            label: 'Email',
+                            hint: 'Enter your email',
+                            controller: _emailController,
+                            prefixIcon: Icons.email_outlined,
+                            keyboardType: TextInputType.emailAddress,
+                            enabled: !isLoading,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              child: AncestroButton(
+                label: 'Send Code',
+                onPressed: _onSendCode,
+                isLoading: isLoading,
+              ),
+            ),
+          ],
         ),
       ),
     );

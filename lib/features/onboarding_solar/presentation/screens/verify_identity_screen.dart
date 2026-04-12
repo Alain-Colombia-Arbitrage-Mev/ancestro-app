@@ -32,22 +32,29 @@ class VerifyIdentityScreen extends ConsumerWidget {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Upload your ID',
-                      style: AppTypography.heading
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
-                    SizedBox(height: r.spacingXS),
-                    Text(
-                      'Please upload the front and back of your government-issued ID.',
-                      style: AppTypography.body
-                          .copyWith(color: AppColors.textSecondary),
-                    ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Upload your ID',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading
+                                .copyWith(color: AppColors.textPrimary),
+                          ),
+                          SizedBox(height: r.spacingXS),
+                          Text(
+                            'Please upload the front and back of your government-issued ID.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body
+                                .copyWith(color: AppColors.textSecondary),
+                          ),
                     SizedBox(height: r.spacingXL),
                     _buildUploadButton(
                       icon: Icons.credit_card,
@@ -64,12 +71,15 @@ class VerifyIdentityScreen extends ConsumerWidget {
                         // Placeholder
                       },
                     ),
-                  ],
-                ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Continue',
                 onPressed: () => context.go(RouteNames.solarAgreements),

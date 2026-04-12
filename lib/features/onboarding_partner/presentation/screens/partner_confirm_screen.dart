@@ -64,8 +64,9 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const AncestroStepper(totalSteps: 4, currentStep: 3),
               SizedBox(height: r.spacingLG),
@@ -74,12 +75,14 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                   children: [
                     Text(
                       'Review & Submit',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
                     SizedBox(height: r.spacingXS),
                     Text(
                       'Please review your information before submitting',
+                      textAlign: TextAlign.center,
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
@@ -184,7 +187,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                   );
                 },
               ),
-              SizedBox(height: r.spacingLG),
+              const SizedBox(height: 24),
             ],
           ),
         ),

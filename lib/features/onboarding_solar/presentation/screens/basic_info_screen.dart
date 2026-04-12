@@ -58,12 +58,13 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       'Tell us about yourself',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
@@ -94,7 +95,7 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: ListenableBuilder(
                 listenable: Listenable.merge(
                     [_nameController, _phoneController, _addressController]),

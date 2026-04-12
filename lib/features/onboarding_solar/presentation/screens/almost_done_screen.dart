@@ -35,46 +35,55 @@ class _AlmostDoneScreenState extends ConsumerState<AlmostDoneScreen> {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: r.spacingXL),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primaryTinted,
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          size: 40,
-                          color: AppColors.primary,
-                        ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: 80,
+                              height: 80,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.primaryTinted,
+                              ),
+                              child: const Icon(
+                                Icons.check,
+                                size: 40,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: r.spacingLG),
+                          Text(
+                            'Just one more step!',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading
+                                .copyWith(color: AppColors.textPrimary),
+                          ),
+                          SizedBox(height: r.spacingSM),
+                          Text(
+                            'We have everything we need to generate '
+                            'your personalized solar proposal.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body
+                                .copyWith(color: AppColors.textSecondary),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: r.spacingLG),
-                      Text(
-                        'Just one more step!',
-                        style: AppTypography.heading
-                            .copyWith(color: AppColors.textPrimary),
-                      ),
-                      SizedBox(height: r.spacingSM),
-                      Text(
-                        'We have everything we need to generate '
-                        'your personalized solar proposal.',
-                        textAlign: TextAlign.center,
-                        style: AppTypography.body
-                            .copyWith(color: AppColors.textSecondary),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Generate My Proposal',
                 isLoading: _isLoading,

@@ -30,19 +30,21 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(height: r.spacingXL),
                     Text(
                       'What are you interested in?',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
                     SizedBox(height: r.spacingXS),
                     Text(
                       'Select the service that best fits your needs.',
+                      textAlign: TextAlign.center,
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
@@ -72,7 +74,7 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Continue',
                 enabled: _selected != null,

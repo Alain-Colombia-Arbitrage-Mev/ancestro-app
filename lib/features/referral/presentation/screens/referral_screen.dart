@@ -49,16 +49,18 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       body: state.isLoading
           ? const AncestroLoading(message: 'Loading referrals...')
           : ListView(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
                 Text(
                   'Refer a Friend',
+                  textAlign: TextAlign.center,
                   style: AppTypography.heading
                       .copyWith(color: AppColors.textPrimary),
                 ),
                 SizedBox(height: r.spacingXS),
                 Text(
                   'Earn \$100 for each friend who signs up and completes their first solar installation through Ancestro.',
+                  textAlign: TextAlign.center,
                   style:
                       AppTypography.body.copyWith(color: AppColors.textSecondary),
                 ),

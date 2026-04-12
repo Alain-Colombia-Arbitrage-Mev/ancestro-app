@@ -90,6 +90,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(height: r.spacingXL),
 

@@ -27,22 +27,29 @@ class FinancesDocScreen extends ConsumerWidget {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Upload Financial Documents',
-                      style: AppTypography.heading
-                          .copyWith(color: AppColors.textPrimary),
-                    ),
-                    SizedBox(height: r.spacingXS),
-                    Text(
-                      'We need proof of income or financial documents to proceed.',
-                      style: AppTypography.body
-                          .copyWith(color: AppColors.textSecondary),
-                    ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Upload Financial Documents',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading
+                                .copyWith(color: AppColors.textPrimary),
+                          ),
+                          SizedBox(height: r.spacingXS),
+                          Text(
+                            'We need proof of income or financial documents to proceed.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body
+                                .copyWith(color: AppColors.textSecondary),
+                          ),
                     SizedBox(height: r.spacingXL),
                     Center(
                       child: GestureDetector(
@@ -82,12 +89,15 @@ class FinancesDocScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Continue',
                 onPressed: () => context.go(RouteNames.solarVerifyIdentity),

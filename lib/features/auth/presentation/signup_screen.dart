@@ -90,13 +90,14 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(height: r.spacingMD),
               Text(
                 'Create Account',
+                textAlign: TextAlign.center,
                 style: AppTypography.heading.copyWith(
                   color: AppColors.textPrimary,
                 ),
@@ -104,6 +105,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               SizedBox(height: r.spacingXS),
               Text(
                 'Join the Barefoot Tribe',
+                textAlign: TextAlign.center,
                 style: AppTypography.body.copyWith(
                   color: AppColors.textSecondary,
                 ),

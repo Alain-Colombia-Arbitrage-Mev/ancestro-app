@@ -98,53 +98,68 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: r.spacingMD),
-                Text(
-                  'Reset Password',
-                  style: AppTypography.heading.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                SizedBox(height: r.spacingXS),
-                Text(
-                  'Create a new password for your account.',
-                  style: AppTypography.body.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                SizedBox(height: r.spacingXL),
-                AncestroInput(
-                  label: 'New Password',
-                  hint: 'Enter new password',
-                  controller: _passwordController,
-                  isPassword: true,
-                  prefixIcon: Icons.lock_outline,
-                  enabled: !isLoading,
-                ),
-                SizedBox(height: r.spacingMD),
-                AncestroInput(
-                  label: 'Confirm Password',
-                  hint: 'Confirm new password',
-                  controller: _confirmPasswordController,
-                  isPassword: true,
-                  prefixIcon: Icons.lock_outline,
-                  enabled: !isLoading,
-                ),
-                SizedBox(height: r.spacingLG),
-                AncestroButton(
-                  label: 'Reset Password',
-                  onPressed: _onReset,
-                  isLoading: isLoading,
-                ),
-              ],
+        child: Column(
+          children: [
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Reset Password',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading.copyWith(
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                          SizedBox(height: r.spacingXS),
+                          Text(
+                            'Create a new password for your account.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                          SizedBox(height: r.spacingXL),
+                          AncestroInput(
+                            label: 'New Password',
+                            hint: 'Enter new password',
+                            controller: _passwordController,
+                            isPassword: true,
+                            prefixIcon: Icons.lock_outline,
+                            enabled: !isLoading,
+                          ),
+                          SizedBox(height: r.spacingMD),
+                          AncestroInput(
+                            label: 'Confirm Password',
+                            hint: 'Confirm new password',
+                            controller: _confirmPasswordController,
+                            isPassword: true,
+                            prefixIcon: Icons.lock_outline,
+                            enabled: !isLoading,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              child: AncestroButton(
+                label: 'Reset Password',
+                onPressed: _onReset,
+                isLoading: isLoading,
+              ),
+            ),
+          ],
         ),
       ),
     );

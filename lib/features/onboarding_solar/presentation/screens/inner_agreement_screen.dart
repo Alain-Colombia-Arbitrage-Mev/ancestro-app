@@ -36,7 +36,7 @@ class InnerAgreementScreen extends ConsumerWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               Expanded(
@@ -49,16 +49,19 @@ class InnerAgreementScreen extends ConsumerWidget {
                 ),
               ),
               SizedBox(height: r.spacingMD),
-              AncestroButton(
-                label: 'Continue',
-                onPressed: () {
-                  if (agreement != null) {
-                    ref
-                        .read(solarOnboardingProvider.notifier)
-                        .acceptAgreement(agreement.id);
-                  }
-                  context.go(RouteNames.solarAgreements);
-                },
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: AncestroButton(
+                  label: 'Continue',
+                  onPressed: () {
+                    if (agreement != null) {
+                      ref
+                          .read(solarOnboardingProvider.notifier)
+                          .acceptAgreement(agreement.id);
+                    }
+                    context.go(RouteNames.solarAgreements);
+                  },
+                ),
               ),
             ],
           ),

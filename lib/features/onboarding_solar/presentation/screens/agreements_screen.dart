@@ -54,7 +54,7 @@ class _AgreementsScreenState extends ConsumerState<AgreementsScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: _isLoading
               ? const Center(
                   child:
@@ -99,11 +99,14 @@ class _AgreementsScreenState extends ConsumerState<AgreementsScreen> {
                         },
                       ),
                     ),
-                    AncestroButton(
-                      label: 'Continue',
-                      enabled: allAccepted,
-                      onPressed: () =>
-                          context.go(RouteNames.solarLastStep),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: AncestroButton(
+                        label: 'Continue',
+                        enabled: allAccepted,
+                        onPressed: () =>
+                            context.go(RouteNames.solarLastStep),
+                      ),
                     ),
                   ],
                 ),

@@ -56,12 +56,13 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       'About your property',
+                      textAlign: TextAlign.center,
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
@@ -112,7 +113,7 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: ListenableBuilder(
                 listenable: Listenable.merge(
                     [_roofSizeController, _consumptionController]),

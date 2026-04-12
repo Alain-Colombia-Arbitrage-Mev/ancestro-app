@@ -27,39 +27,45 @@ class IntroScreen extends ConsumerWidget {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: r.spacingXL),
-                      const Icon(
-                        Icons.solar_power,
-                        size: 96,
-                        color: AppColors.primary,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Icon(
+                            Icons.solar_power,
+                            size: 96,
+                            color: AppColors.primary,
+                          ),
+                          SizedBox(height: r.spacingXL),
+                          Text(
+                            'Your Solar Journey\nStarts Here',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.heading
+                                .copyWith(color: AppColors.textPrimary),
+                          ),
+                          SizedBox(height: r.spacingMD),
+                          Text(
+                            'We\'ll guide you through every step to get clean, '
+                            'affordable energy for your home.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body
+                                .copyWith(color: AppColors.textSecondary),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: r.spacingXL),
-                      Text(
-                        'Your Solar Journey\nStarts Here',
-                        textAlign: TextAlign.center,
-                        style: AppTypography.heading
-                            .copyWith(color: AppColors.textPrimary),
-                      ),
-                      SizedBox(height: r.spacingMD),
-                      Text(
-                        'We\'ll guide you through every step to get clean, '
-                        'affordable energy for your home.',
-                        textAlign: TextAlign.center,
-                        style: AppTypography.body
-                            .copyWith(color: AppColors.textSecondary),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: AncestroButton(
                 label: 'Get Started',
                 onPressed: () => context.go(RouteNames.solarProposal),

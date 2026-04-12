@@ -34,51 +34,62 @@ class CoveragePlanScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '20 Year Coverage',
-                style: AppTypography.heading
-                    .copyWith(color: AppColors.textPrimary),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    '20 Year Coverage',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.heading
+                        .copyWith(color: AppColors.textPrimary),
+                  ),
+                  SizedBox(height: r.spacingXS),
+                  Text(
+                    'Your system is fully protected.',
+                    textAlign: TextAlign.center,
+                    style:
+                        AppTypography.body.copyWith(color: AppColors.textSecondary),
+                  ),
+                  SizedBox(height: r.spacingLG),
+                ],
               ),
-              SizedBox(height: r.spacingXS),
-              Text(
-                'Your system is fully protected.',
-                style:
-                    AppTypography.body.copyWith(color: AppColors.textSecondary),
-              ),
-              SizedBox(height: r.spacingLG),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: _coverageItems.length,
-                  separatorBuilder: (_, _) => SizedBox(height: r.spacingMD),
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        const Icon(Icons.check_circle_outline,
-                            color: AppColors.success, size: 24),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            _coverageItems[index],
-                            style: AppTypography.body
-                                .copyWith(color: AppColors.textPrimary),
-                          ),
+            ),
+            Expanded(
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                itemCount: _coverageItems.length,
+                separatorBuilder: (context, index) => SizedBox(height: r.spacingMD),
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      const Icon(Icons.check_circle_outline,
+                          color: AppColors.success, size: 24),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          _coverageItems[index],
+                          style: AppTypography.body
+                              .copyWith(color: AppColors.textPrimary),
                         ),
-                      ],
-                    );
-                  },
-                ),
+                      ),
+                    ],
+                  );
+                },
               ),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              child: AncestroButton(
                 label: 'Proceed to Checkout',
                 onPressed: () => context.go(RouteNames.solarReserve),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

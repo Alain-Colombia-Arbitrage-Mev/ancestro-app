@@ -37,36 +37,37 @@ class InstantProposalScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    _buildRow('System Size',
-                        '${proposal.systemSizeKw.toStringAsFixed(1)} kW'),
-                    _buildRow('Number of Panels',
-                        '${proposal.numberOfPanels}'),
-                    _buildRow('Annual Production',
-                        '${proposal.estimatedAnnualProductionKwh.toStringAsFixed(0)} kWh'),
-                    _buildRow('Monthly Savings',
-                        '\$${proposal.monthlySavings.toStringAsFixed(2)}'),
-                    _buildRow('Total Cost',
-                        '\$${proposal.totalCost.toStringAsFixed(2)}'),
-                    _buildRow('Monthly Payment',
-                        '\$${proposal.monthlyPayment.toStringAsFixed(2)}'),
-                    _buildRow('Coverage',
-                        '${proposal.coverageYears} Years'),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  _buildRow('System Size',
+                      '${proposal.systemSizeKw.toStringAsFixed(1)} kW'),
+                  _buildRow('Number of Panels',
+                      '${proposal.numberOfPanels}'),
+                  _buildRow('Annual Production',
+                      '${proposal.estimatedAnnualProductionKwh.toStringAsFixed(0)} kWh'),
+                  _buildRow('Monthly Savings',
+                      '\$${proposal.monthlySavings.toStringAsFixed(2)}'),
+                  _buildRow('Total Cost',
+                      '\$${proposal.totalCost.toStringAsFixed(2)}'),
+                  _buildRow('Monthly Payment',
+                      '\$${proposal.monthlyPayment.toStringAsFixed(2)}'),
+                  _buildRow('Coverage',
+                      '${proposal.coverageYears} Years'),
+                ],
               ),
-              AncestroButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              child: AncestroButton(
                 label: 'Continue to Checkout',
                 onPressed: () => context.go(RouteNames.solarConfirm),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

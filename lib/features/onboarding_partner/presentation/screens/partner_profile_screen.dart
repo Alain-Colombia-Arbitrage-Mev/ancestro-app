@@ -87,21 +87,23 @@ class PartnerProfileScreen extends ConsumerWidget {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(height: r.spacingMD),
               const AncestroStepper(totalSteps: 4, currentStep: 0),
               SizedBox(height: r.spacingLG),
               Text(
                 'Join as a Partner',
+                textAlign: TextAlign.center,
                 style: AppTypography.heading
                     .copyWith(color: AppColors.textPrimary),
               ),
               SizedBox(height: r.spacingXS),
               Text(
                 'Select the type of partner that best describes you',
+                textAlign: TextAlign.center,
                 style: AppTypography.body
                     .copyWith(color: AppColors.textSecondary),
               ),
@@ -175,7 +177,7 @@ class PartnerProfileScreen extends ConsumerWidget {
                   },
                 ),
               ),
-              SizedBox(height: r.spacingMD),
+              const SizedBox(height: 24),
               AncestroButton(
                 label: 'Continue',
                 onPressed: state.partnerType != null
@@ -186,7 +188,7 @@ class PartnerProfileScreen extends ConsumerWidget {
                     : null,
                 enabled: state.partnerType != null,
               ),
-              SizedBox(height: r.spacingLG),
+              const SizedBox(height: 24),
             ],
           ),
         ),
