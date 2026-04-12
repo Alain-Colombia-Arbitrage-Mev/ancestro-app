@@ -96,16 +96,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   children: [
                     SizedBox(height: r.spacingXL),
 
-                    // Logo — huella + rayo + ANCESTRO text, composed like .pen
+                    // Logo — huella + rayo + ANCESTRO text, proportional to .pen
                     Image.asset(
                       'assets/images/logo_footprint.png',
-                      width: r.isSmall ? 55 : 68,
-                      height: r.isSmall ? 95 : 120,
+                      width: r.logoFootprintWidth,
+                      height: r.logoFootprintHeight,
                     ),
-                    SizedBox(height: r.spacingSM),
+                    SizedBox(height: r.logoGap),
                     Image.asset(
                       'assets/images/logo_ancestro_text.png',
-                      width: r.logoWidth,
+                      width: r.logoTextWidth,
                     ),
                     SizedBox(height: r.spacingLG),
 

@@ -24,13 +24,17 @@ class AppResponsive {
   double get spacingXL => isSmall ? 20 : isMedium ? 28 : 40;
   double get spacingXXL => isSmall ? 28 : isMedium ? 40 : 60;
 
-  /// Adaptive font sizes
-  double get titleSize => isSmall ? 20 : isMedium ? 23 : 26;
-  double get subtitleSize => isSmall ? 17 : isMedium ? 19 : 21;
+  /// Adaptive font sizes — .pen uses 26/21/14 at 430px
+  double get titleSize => isSmall ? 18 : isMedium ? 22 : 26;
+  double get subtitleSize => isSmall ? 16 : isMedium ? 18 : 21;
   double get bodySize => isSmall ? 13 : 14;
 
-  /// Adaptive logo size
-  double get logoWidth => isSmall ? 140 : isMedium ? 180 : 250;
+  /// Adaptive logo — proportional to .pen (text 176px in 430px frame = ~41%)
+  /// Footprint is 19% of text width, height ratio 1.76
+  double get logoTextWidth => screenWidth * 0.41;
+  double get logoFootprintWidth => logoTextWidth * 0.19;
+  double get logoFootprintHeight => logoFootprintWidth * 1.76;
+  double get logoGap => isSmall ? 8 : 10;
 
   /// Adaptive section padding
   EdgeInsets get screenPadding => EdgeInsets.symmetric(
