@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -22,6 +23,7 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -32,33 +34,33 @@ class _ChooseFlowScreenState extends ConsumerState<ChooseFlowScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 32),
+                    SizedBox(height: r.spacingXL),
                     Text(
                       'What are you interested in?',
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     Text(
                       'Select the service that best fits your needs.',
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: r.spacingXL),
                     _buildOption(
                       icon: Icons.solar_power,
                       title: 'Solar Energy',
                       subtitle: 'Power your home with the sun',
                       type: SystemType.solar,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: r.spacingSM),
                     _buildOption(
                       icon: Icons.electric_car,
                       title: 'EV Charging',
                       subtitle: 'Charge your vehicle at home',
                       type: SystemType.ev,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: r.spacingSM),
                     _buildOption(
                       icon: Icons.bolt,
                       title: 'Solar + EV',

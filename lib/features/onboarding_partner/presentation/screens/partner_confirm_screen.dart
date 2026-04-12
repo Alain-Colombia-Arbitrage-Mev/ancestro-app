@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/auth/auth_user.dart';
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -44,6 +45,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final state = ref.watch(partnerOnboardingProvider);
     final notifier = ref.read(partnerOnboardingProvider.notifier);
 
@@ -66,7 +68,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
           child: Column(
             children: [
               const AncestroStepper(totalSteps: 4, currentStep: 3),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
               Expanded(
                 child: ListView(
                   children: [
@@ -75,13 +77,13 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     Text(
                       'Please review your information before submitting',
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
 
                     // Partner Type Section
                     AncestroCard(
@@ -93,7 +95,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                             style: AppTypography.bodyMedium
                                 .copyWith(color: AppColors.primary),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: r.spacingXS),
                           Text(
                             state.partnerType != null
                                 ? _partnerTypeName(state.partnerType!)
@@ -104,7 +106,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
 
                     // Contact Info Section
                     if (state.contact != null)
@@ -117,7 +119,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                               style: AppTypography.bodyMedium
                                   .copyWith(color: AppColors.primary),
                             ),
-                            const SizedBox(height: 12),
+                            SizedBox(height: r.spacingSM),
                             _buildInfoRow('Name', state.contact!.fullName),
                             _buildInfoRow('Email', state.contact!.email),
                             _buildInfoRow('Phone', state.contact!.phone),
@@ -128,7 +130,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                           ],
                         ),
                       ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
 
                     // Details Section
                     if (state.details.isNotEmpty)
@@ -141,7 +143,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                               style: AppTypography.bodyMedium
                                   .copyWith(color: AppColors.primary),
                             ),
-                            const SizedBox(height: 12),
+                            SizedBox(height: r.spacingSM),
                             ...state.details.entries.map((entry) {
                               final displayValue = entry.value is List
                                   ? (entry.value as List).join(', ')
@@ -154,7 +156,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                           ],
                         ),
                       ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                   ],
                 ),
               ),
@@ -182,7 +184,7 @@ class _PartnerConfirmScreenState extends ConsumerState<PartnerConfirmScreen> {
                   );
                 },
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
             ],
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/design/app_colors.dart';
 import '../../../core/design/app_typography.dart';
+import '../../../core/design/app_responsive.dart';
 import '../../../core/router/route_names.dart';
 import '../../../core/widgets/ancestro_button.dart';
 import '../../../core/widgets/ancestro_input.dart';
@@ -58,6 +59,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final authState = ref.watch(authNotifierProvider);
     final isLoading = authState.status == AuthStatus.loading;
 
@@ -102,21 +104,21 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: r.spacingMD),
                 Text(
                   'Reset Password',
                   style: AppTypography.heading.copyWith(
                     color: AppColors.textPrimary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: r.spacingXS),
                 Text(
                   'Create a new password for your account.',
                   style: AppTypography.body.copyWith(
                     color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: r.spacingXL),
                 AncestroInput(
                   label: 'New Password',
                   hint: 'Enter new password',
@@ -125,7 +127,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                   prefixIcon: Icons.lock_outline,
                   enabled: !isLoading,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: r.spacingMD),
                 AncestroInput(
                   label: 'Confirm Password',
                   hint: 'Confirm new password',
@@ -134,7 +136,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                   prefixIcon: Icons.lock_outline,
                   enabled: !isLoading,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: r.spacingLG),
                 AncestroButton(
                   label: 'Reset Password',
                   onPressed: _onReset,

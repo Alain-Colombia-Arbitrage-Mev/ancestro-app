@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../domain/models/property_photo.dart';
@@ -13,6 +14,7 @@ class LastStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -36,31 +38,31 @@ class LastStepScreen extends ConsumerWidget {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     Text(
                       'Take photos of the following areas of your property.',
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: r.spacingXL),
                     _buildCategoryButton(
                       icon: Icons.roofing,
                       label: 'Roof Front',
                       category: PhotoCategory.roofFront,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: r.spacingSM),
                     _buildCategoryButton(
                       icon: Icons.roofing,
                       label: 'Roof Back',
                       category: PhotoCategory.roofBack,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: r.spacingSM),
                     _buildCategoryButton(
                       icon: Icons.electrical_services,
                       label: 'Electrical Panel',
                       category: PhotoCategory.electricalPanel,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: r.spacingSM),
                     _buildCategoryButton(
                       icon: Icons.speed,
                       label: 'Meter',

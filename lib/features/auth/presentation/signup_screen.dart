@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/auth/auth_user.dart';
 import '../../../core/design/app_colors.dart';
 import '../../../core/design/app_typography.dart';
+import '../../../core/design/app_responsive.dart';
 import '../../../core/router/route_names.dart';
 import '../../../core/widgets/ancestro_button.dart';
 import '../../../core/widgets/ancestro_card.dart';
@@ -57,6 +58,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final authState = ref.watch(authNotifierProvider);
     final isLoading = authState.status == AuthStatus.loading;
 
@@ -92,21 +94,21 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              SizedBox(height: r.spacingMD),
               Text(
                 'Create Account',
                 style: AppTypography.heading.copyWith(
                   color: AppColors.textPrimary,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: r.spacingXS),
               Text(
                 'Join the Barefoot Tribe',
                 style: AppTypography.body.copyWith(
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: r.spacingXL),
 
               // Role selector
               Text(
@@ -115,7 +117,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: r.spacingSM),
               Row(
                 children: [
                   Expanded(
@@ -133,7 +135,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                 ? AppColors.primary
                                 : AppColors.textTertiary,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: r.spacingXS),
                           Text(
                             'Customer',
                             style: AppTypography.bodyMedium.copyWith(
@@ -162,7 +164,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                 ? AppColors.primary
                                 : AppColors.textTertiary,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: r.spacingXS),
                           Text(
                             'Partner',
                             style: AppTypography.bodyMedium.copyWith(
@@ -177,7 +179,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
 
               // Email
               AncestroInput(
@@ -188,7 +190,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 keyboardType: TextInputType.emailAddress,
                 enabled: !isLoading,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: r.spacingMD),
 
               // Password
               AncestroInput(
@@ -199,7 +201,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 prefixIcon: Icons.lock_outline,
                 enabled: !isLoading,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: r.spacingMD),
 
               // Referral code
               AncestroInput(
@@ -209,7 +211,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 prefixIcon: Icons.card_giftcard_outlined,
                 enabled: !isLoading,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
 
               // Sign Up button
               AncestroButton(
@@ -217,7 +219,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 onPressed: _onSignUp,
                 isLoading: isLoading,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
 
               // OR divider
               Row(
@@ -239,7 +241,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
 
               // Social login
               SocialLoginButtons(
@@ -252,7 +254,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 },
                 onPhonePressed: () {},
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: r.spacingXL),
 
               // Log in link
               Row(
@@ -277,7 +279,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: r.spacingXL),
             ],
           ),
         ),

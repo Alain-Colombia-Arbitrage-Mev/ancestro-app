@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/auth/auth_user.dart';
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -78,6 +79,7 @@ class PartnerProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     final state = ref.watch(partnerOnboardingProvider);
     final notifier = ref.read(partnerOnboardingProvider.notifier);
 
@@ -89,21 +91,21 @@ class PartnerProfileScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              SizedBox(height: r.spacingMD),
               const AncestroStepper(totalSteps: 4, currentStep: 0),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
               Text(
                 'Join as a Partner',
                 style: AppTypography.heading
                     .copyWith(color: AppColors.textPrimary),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: r.spacingXS),
               Text(
                 'Select the type of partner that best describes you',
                 style: AppTypography.body
                     .copyWith(color: AppColors.textSecondary),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -173,7 +175,7 @@ class PartnerProfileScreen extends ConsumerWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: r.spacingMD),
               AncestroButton(
                 label: 'Continue',
                 onPressed: state.partnerType != null
@@ -184,7 +186,7 @@ class PartnerProfileScreen extends ConsumerWidget {
                     : null,
                 enabled: state.partnerType != null,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
             ],
           ),
         ),

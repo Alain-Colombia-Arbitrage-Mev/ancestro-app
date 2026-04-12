@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 
@@ -12,6 +13,7 @@ class IntroScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -30,20 +32,20 @@ class IntroScreen extends ConsumerWidget {
                 child: Center(
                   child: Column(
                     children: [
-                      const SizedBox(height: 48),
+                      SizedBox(height: r.spacingXL),
                       const Icon(
                         Icons.solar_power,
                         size: 96,
                         color: AppColors.primary,
                       ),
-                      const SizedBox(height: 32),
+                      SizedBox(height: r.spacingXL),
                       Text(
                         'Your Solar Journey\nStarts Here',
                         textAlign: TextAlign.center,
                         style: AppTypography.heading
                             .copyWith(color: AppColors.textPrimary),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: r.spacingMD),
                       Text(
                         'We\'ll guide you through every step to get clean, '
                         'affordable energy for your home.',

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -15,6 +16,7 @@ class ConfirmInspectionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     final state = ref.watch(solarOnboardingProvider);
     final inspection = state.inspection;
     final basicInfo = state.basicInfo;
@@ -48,7 +50,7 @@ class ConfirmInspectionScreen extends ConsumerWidget {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     if (inspection != null)
                       AncestroCard(
                         child: Column(
@@ -56,10 +58,10 @@ class ConfirmInspectionScreen extends ConsumerWidget {
                           children: [
                             _infoRow(Icons.calendar_today, 'Date',
                                 dateFormat.format(inspection.date)),
-                            const SizedBox(height: 16),
+                            SizedBox(height: r.spacingMD),
                             _infoRow(Icons.access_time, 'Time',
                                 inspection.timeSlot),
-                            const SizedBox(height: 16),
+                            SizedBox(height: r.spacingMD),
                             _infoRow(Icons.location_on, 'Address',
                                 basicInfo?.address ?? 'N/A'),
                           ],

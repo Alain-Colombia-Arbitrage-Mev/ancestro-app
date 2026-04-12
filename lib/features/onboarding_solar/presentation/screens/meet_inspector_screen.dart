@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../providers/solar_onboarding_notifier.dart';
@@ -13,6 +14,7 @@ class MeetInspectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     final state = ref.watch(solarOnboardingProvider);
     final inspection = state.inspection;
 
@@ -35,7 +37,7 @@ class MeetInspectorScreen extends ConsumerWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 48),
+                      SizedBox(height: r.spacingXL),
                       Container(
                         width: 96,
                         height: 96,
@@ -49,19 +51,19 @@ class MeetInspectorScreen extends ConsumerWidget {
                           color: AppColors.textTertiary,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: r.spacingLG),
                       Text(
                         inspection?.inspectorName ?? 'Your Inspector',
                         style: AppTypography.heading
                             .copyWith(color: AppColors.textPrimary),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: r.spacingXS),
                       Text(
                         'Solar Installation Inspector',
                         style: AppTypography.body
                             .copyWith(color: AppColors.textSecondary),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: r.spacingMD),
                       if (inspection?.inspectorPhone != null)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

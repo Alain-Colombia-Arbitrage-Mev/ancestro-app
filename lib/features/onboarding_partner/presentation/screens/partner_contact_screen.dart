@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_input.dart';
@@ -47,6 +48,7 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final notifier = ref.read(partnerOnboardingProvider.notifier);
 
     return Scaffold(
@@ -68,7 +70,7 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
           child: Column(
             children: [
               const AncestroStepper(totalSteps: 4, currentStep: 1),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
               Expanded(
                 child: ListView(
                   children: [
@@ -77,20 +79,20 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     Text(
                       'Tell us how to reach you',
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     AncestroInput(
                       label: 'Full Name',
                       hint: 'Enter your full name',
                       controller: _fullNameController,
                       prefixIcon: Icons.person_outline,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Email',
                       hint: 'Enter your email',
@@ -98,7 +100,7 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
                       prefixIcon: Icons.email_outlined,
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Phone',
                       hint: 'Enter your phone number',
@@ -106,28 +108,28 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
                       prefixIcon: Icons.phone_outlined,
                       keyboardType: TextInputType.phone,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Country',
                       hint: 'Enter your country',
                       controller: _countryController,
                       prefixIcon: Icons.public,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'City',
                       hint: 'Enter your city',
                       controller: _cityController,
                       prefixIcon: Icons.location_city,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Company (Optional)',
                       hint: 'Enter your company name',
                       controller: _companyController,
                       prefixIcon: Icons.business,
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                   ],
                 ),
               ),
@@ -150,7 +152,7 @@ class _PartnerContactScreenState extends ConsumerState<PartnerContactScreen> {
                   context.go(RouteNames.partnerDetails);
                 },
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
             ],
           ),
         ),

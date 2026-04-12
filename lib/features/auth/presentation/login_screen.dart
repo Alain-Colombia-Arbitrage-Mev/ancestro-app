@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/design/app_colors.dart';
+import '../../../core/design/app_responsive.dart';
 import '../../../core/design/app_typography.dart';
 import '../../../core/router/route_names.dart';
 import '../../../core/widgets/ancestro_button.dart';
@@ -55,12 +56,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
     });
 
-    final screenHeight = MediaQuery.of(context).size.height;
-    final isSmall = screenHeight < 700;
-    final titleSize = isSmall ? 22.0 : 26.0;
-    final topPadding = isSmall ? 30.0 : 60.0;
-    final sectionGap = isSmall ? 16.0 : 25.0;
-    final largeSectionGap = isSmall ? 24.0 : 40.0;
+    final r = AppResponsive(context);
 
     return Scaffold(
       body: Stack(
@@ -95,20 +91,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    SizedBox(height: topPadding),
+                    SizedBox(height: r.spacingXL),
 
                     // Logo — huella + rayo + ANCESTRO text, composed like .pen
                     Image.asset(
                       'assets/images/logo_footprint.png',
-                      width: isSmall ? 55 : 68,
-                      height: isSmall ? 95 : 120,
+                      width: r.isSmall ? 55 : 68,
+                      height: r.isSmall ? 95 : 120,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: r.spacingSM),
                     Image.asset(
                       'assets/images/logo_ancestro_text.png',
-                      width: isSmall ? 200 : 250,
+                      width: r.logoWidth,
                     ),
-                    SizedBox(height: sectionGap),
+                    SizedBox(height: r.spacingLG),
 
                     // Title — matching .pen: fontSize 26, fontWeight 600, letterSpacing -1
                     Text(
@@ -116,13 +112,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       textAlign: TextAlign.center,
                       style: AppTypography.heading.copyWith(
                         color: AppColors.textPrimary,
-                        fontSize: titleSize,
+                        fontSize: r.titleSize,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -1,
                         height: 1.38,
                       ),
                     ),
-                    SizedBox(height: largeSectionGap),
+                    SizedBox(height: r.spacingXL),
 
                     // Email input — matching .pen structure
                     AncestroInput(
@@ -133,7 +129,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       enabled: !isLoading,
                     ),
-                    SizedBox(height: sectionGap),
+                    SizedBox(height: r.spacingLG),
 
                     // Password input
                     AncestroInput(
@@ -144,7 +140,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       prefixIcon: Icons.lock_outline,
                       enabled: !isLoading,
                     ),
-                    SizedBox(height: sectionGap),
+                    SizedBox(height: r.spacingLG),
 
                     // Log In button — .pen: height 55, cornerRadius 16, amber fill
                     AncestroButton(
@@ -152,7 +148,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       onPressed: _onLogin,
                       isLoading: isLoading,
                     ),
-                    SizedBox(height: sectionGap),
+                    SizedBox(height: r.spacingLG),
 
                     // Forgot password — .pen: fontSize 14, fontWeight 500, amber
                     TextButton(
@@ -167,7 +163,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: sectionGap),
+                    SizedBox(height: r.spacingLG),
 
                     // OR divider — .pen: line color #1f1f1f, text #6c6c6c
                     Row(
@@ -196,7 +192,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: sectionGap),
+                    SizedBox(height: r.spacingLG),
 
                     // Social login — .pen shows Google/Apple buttons with dark fill
                     SocialLoginButtons(
@@ -209,7 +205,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       },
                       onPhonePressed: () {},
                     ),
-                    SizedBox(height: largeSectionGap),
+                    SizedBox(height: r.spacingXL),
 
                     // Sign up link — .pen: "Don't have an account?" white + "Sign up" amber
                     Row(

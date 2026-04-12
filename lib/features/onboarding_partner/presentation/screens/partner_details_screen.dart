@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_stepper.dart';
@@ -24,6 +25,7 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final state = ref.watch(partnerOnboardingProvider);
     final notifier = ref.read(partnerOnboardingProvider.notifier);
 
@@ -52,7 +54,7 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
           child: Column(
             children: [
               const AncestroStepper(totalSteps: 4, currentStep: 2),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
               Expanded(
                 child: ListView(
                   children: [
@@ -61,13 +63,13 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     Text(
                       'Provide details specific to your partner type',
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     ...fields.map((field) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 20),
@@ -82,7 +84,7 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
                         ),
                       );
                     }),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                   ],
                 ),
               ),
@@ -94,7 +96,7 @@ class _PartnerDetailsScreenState extends ConsumerState<PartnerDetailsScreen> {
                   context.go(RouteNames.partnerConfirm);
                 },
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: r.spacingLG),
             ],
           ),
         ),

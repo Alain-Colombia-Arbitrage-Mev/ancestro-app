@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../domain/models/solar_onboarding_state.dart';
@@ -32,6 +33,7 @@ class _CreditCheckScreenState extends ConsumerState<CreditCheckScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final state = ref.watch(solarOnboardingProvider);
     final isApproved = state.creditStatus == CreditStatus.approved;
 
@@ -60,7 +62,7 @@ class _CreditCheckScreenState extends ConsumerState<CreditCheckScreen> {
                         child: Center(
                           child: Column(
                             children: [
-                              const SizedBox(height: 48),
+                              SizedBox(height: r.spacingXL),
                               Icon(
                                 isApproved
                                     ? Icons.check_circle
@@ -70,13 +72,13 @@ class _CreditCheckScreenState extends ConsumerState<CreditCheckScreen> {
                                     ? AppColors.success
                                     : AppColors.error,
                               ),
-                              const SizedBox(height: 24),
+                              SizedBox(height: r.spacingLG),
                               Text(
                                 isApproved ? 'Approved!' : 'Not Approved',
                                 style: AppTypography.heading
                                     .copyWith(color: AppColors.textPrimary),
                               ),
-                              const SizedBox(height: 12),
+                              SizedBox(height: r.spacingSM),
                               Text(
                                 isApproved
                                     ? 'Your credit has been approved. You\'re ready '
@@ -88,7 +90,7 @@ class _CreditCheckScreenState extends ConsumerState<CreditCheckScreen> {
                                     .copyWith(color: AppColors.textSecondary),
                               ),
                               if (isApproved) ...[
-                                const SizedBox(height: 32),
+                                SizedBox(height: r.spacingXL),
                                 Container(
                                   height: 120,
                                   decoration: BoxDecoration(

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -13,6 +14,7 @@ class ReserveSystemScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -41,7 +43,7 @@ class ReserveSystemScreen extends ConsumerWidget {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     AncestroCard(
                       child: Row(
                         children: [

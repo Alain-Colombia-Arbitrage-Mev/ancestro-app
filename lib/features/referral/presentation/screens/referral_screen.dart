@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
 import '../../../../core/widgets/ancestro_loading.dart';
@@ -30,6 +31,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final state = ref.watch(referralProvider);
 
     return Scaffold(
@@ -54,13 +56,13 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                   style: AppTypography.heading
                       .copyWith(color: AppColors.textPrimary),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: r.spacingXS),
                 Text(
                   'Earn \$100 for each friend who signs up and completes their first solar installation through Ancestro.',
                   style:
                       AppTypography.body.copyWith(color: AppColors.textSecondary),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: r.spacingLG),
 
                 // Referral code card
                 AncestroCard(
@@ -71,7 +73,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                         style: AppTypography.caption
                             .copyWith(color: AppColors.textTertiary),
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: r.spacingSM),
                       Text(
                         state.code,
                         style: AppTypography.heading.copyWith(
@@ -79,7 +81,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                           letterSpacing: 4,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: r.spacingMD),
                       Row(
                         children: [
                           Expanded(
@@ -115,7 +117,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: r.spacingXL),
 
                 // Referrals list
                 Text(
@@ -123,7 +125,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                   style: AppTypography.subheading
                       .copyWith(color: AppColors.textPrimary),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: r.spacingMD),
                 if (state.referrals.isEmpty)
                   Center(
                     child: Padding(

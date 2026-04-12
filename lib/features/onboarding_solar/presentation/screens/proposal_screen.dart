@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 
@@ -12,6 +13,7 @@ class ProposalScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -42,20 +44,20 @@ class ProposalScreen extends ConsumerWidget {
                   child: Center(
                     child: Column(
                       children: [
-                        const SizedBox(height: 48),
+                        SizedBox(height: r.spacingXL),
                         const Icon(
                           Icons.solar_power_outlined,
                           size: 80,
                           color: AppColors.primary,
                         ),
-                        const SizedBox(height: 24),
+                        SizedBox(height: r.spacingLG),
                         Text(
                           'Let\'s Build Your\nSolar Proposal',
                           textAlign: TextAlign.center,
                           style: AppTypography.heading
                               .copyWith(color: AppColors.textPrimary),
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: r.spacingSM),
                         Text(
                           'Answer a few questions and we\'ll create '
                           'a personalized solar plan for your home.',

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 
@@ -12,6 +13,7 @@ class FinancesDocScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -35,13 +37,13 @@ class FinancesDocScreen extends ConsumerWidget {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     Text(
                       'We need proof of income or financial documents to proceed.',
                       style: AppTypography.body
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: r.spacingXL),
                     Center(
                       child: GestureDetector(
                         onTap: () {
@@ -63,7 +65,7 @@ class FinancesDocScreen extends ConsumerWidget {
                             children: [
                               const Icon(Icons.cloud_upload_outlined,
                                   color: AppColors.primary, size: 48),
-                              const SizedBox(height: 12),
+                              SizedBox(height: r.spacingSM),
                               Text(
                                 'Tap to upload documents',
                                 style: AppTypography.bodyMedium

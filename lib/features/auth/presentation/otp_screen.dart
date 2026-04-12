@@ -9,6 +9,7 @@ import '../../../core/config/constants.dart';
 import '../../../core/design/app_colors.dart';
 import '../../../core/design/app_radii.dart';
 import '../../../core/design/app_typography.dart';
+import '../../../core/design/app_responsive.dart';
 import '../../../core/router/route_names.dart';
 import '../../../core/widgets/ancestro_button.dart';
 import '../providers/auth_notifier.dart';
@@ -111,6 +112,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final authState = ref.watch(authNotifierProvider);
     final isLoading = authState.status == AuthStatus.loading;
 
@@ -148,21 +150,21 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: r.spacingMD),
                 Text(
                   'Verify Code',
                   style: AppTypography.heading.copyWith(
                     color: AppColors.textPrimary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: r.spacingXS),
                 Text(
                   'Enter the 6-digit code sent to ${widget.email}',
                   style: AppTypography.body.copyWith(
                     color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: r.spacingXL),
 
                 // OTP boxes
                 Row(
@@ -227,7 +229,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                     );
                   }),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: r.spacingLG),
 
                 // Resend
                 Center(
@@ -248,7 +250,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                           ),
                         ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: r.spacingXL),
 
                 // Verify button
                 AncestroButton(

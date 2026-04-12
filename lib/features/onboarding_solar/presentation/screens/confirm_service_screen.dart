@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -14,6 +15,7 @@ class ConfirmServiceScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     final state = ref.watch(solarOnboardingProvider);
     final proposal = state.proposal;
 
@@ -45,20 +47,20 @@ class ConfirmServiceScreen extends ConsumerWidget {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     if (proposal != null)
                       AncestroCard(
                         child: Column(
                           children: [
                             _summaryRow('System Size',
                                 '${proposal.systemSizeKw.toStringAsFixed(1)} kW'),
-                            const SizedBox(height: 12),
+                            SizedBox(height: r.spacingSM),
                             _summaryRow(
                                 'Panels', '${proposal.numberOfPanels}'),
-                            const SizedBox(height: 12),
+                            SizedBox(height: r.spacingSM),
                             _summaryRow('Monthly Payment',
                                 '\$${proposal.monthlyPayment.toStringAsFixed(2)}'),
-                            const SizedBox(height: 12),
+                            SizedBox(height: r.spacingSM),
                             _summaryRow('Coverage',
                                 '${proposal.coverageYears} Years'),
                           ],

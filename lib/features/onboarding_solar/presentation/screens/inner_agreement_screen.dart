@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../providers/solar_onboarding_notifier.dart';
@@ -15,6 +16,7 @@ class InnerAgreementScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final r = AppResponsive(context);
     final state = ref.watch(solarOnboardingProvider);
     final agreement = state.agreements.where((a) => a.id == agreementId).firstOrNull;
 
@@ -46,7 +48,7 @@ class InnerAgreementScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: r.spacingMD),
               AncestroButton(
                 label: 'Continue',
                 onPressed: () {

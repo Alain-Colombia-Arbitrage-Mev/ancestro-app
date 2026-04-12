@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_input.dart';
@@ -35,6 +36,7 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -63,13 +65,13 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     Text(
                       'Property Type',
                       style: AppTypography.label
                           .copyWith(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: r.spacingXS),
                     DropdownButtonFormField<PropertyType>(
                       initialValue: _propertyType,
                       dropdownColor: AppColors.surface,
@@ -89,7 +91,7 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
                         if (value != null) setState(() => _propertyType = value);
                       },
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Roof Size (sq ft)',
                       hint: 'e.g. 1500',
@@ -97,7 +99,7 @@ class _PropertyInfoScreenState extends ConsumerState<PropertyInfoScreen> {
                       keyboardType: TextInputType.number,
                       prefixIcon: Icons.roofing,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Monthly Consumption (kWh)',
                       hint: 'e.g. 900',

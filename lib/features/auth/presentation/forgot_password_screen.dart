@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/design/app_colors.dart';
 import '../../../core/design/app_typography.dart';
+import '../../../core/design/app_responsive.dart';
 import '../../../core/router/route_names.dart';
 import '../../../core/widgets/ancestro_button.dart';
 import '../../../core/widgets/ancestro_input.dart';
@@ -34,6 +35,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final authState = ref.watch(authNotifierProvider);
     final isLoading = authState.status == AuthStatus.loading;
 
@@ -70,21 +72,21 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: r.spacingMD),
                 Text(
                   'Forgot Password',
                   style: AppTypography.heading.copyWith(
                     color: AppColors.textPrimary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: r.spacingXS),
                 Text(
                   'Enter your email address and we will send you a verification code to reset your password.',
                   style: AppTypography.body.copyWith(
                     color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: r.spacingXL),
                 AncestroInput(
                   label: 'Email',
                   hint: 'Enter your email',
@@ -93,7 +95,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                   keyboardType: TextInputType.emailAddress,
                   enabled: !isLoading,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: r.spacingLG),
                 AncestroButton(
                   label: 'Send Code',
                   onPressed: _onSendCode,

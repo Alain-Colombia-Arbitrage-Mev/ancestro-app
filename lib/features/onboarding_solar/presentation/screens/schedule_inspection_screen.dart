@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -51,6 +52,7 @@ class _ScheduleInspectionScreenState
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final dateFormat = DateFormat('EEE, MMM d');
 
     return Scaffold(
@@ -85,13 +87,13 @@ class _ScheduleInspectionScreenState
                               style: AppTypography.heading
                                   .copyWith(color: AppColors.textPrimary),
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: r.spacingMD),
                             SizedBox(
                               height: 200,
                               child: ListView.separated(
                                 itemCount: _dates.length,
                                 separatorBuilder: (_, _) =>
-                                    const SizedBox(height: 8),
+                                    SizedBox(height: r.spacingXS),
                                 itemBuilder: (context, index) {
                                   final date = _dates[index];
                                   final isSelected = _selectedDate == date;
@@ -108,13 +110,13 @@ class _ScheduleInspectionScreenState
                                 },
                               ),
                             ),
-                            const SizedBox(height: 24),
+                            SizedBox(height: r.spacingLG),
                             Text(
                               'Select a Time Slot',
                               style: AppTypography.bodyMedium
                                   .copyWith(color: AppColors.textPrimary),
                             ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: r.spacingXS),
                             DropdownButtonFormField<String>(
                               initialValue: _selectedTimeSlot,
                               dropdownColor: AppColors.surface,

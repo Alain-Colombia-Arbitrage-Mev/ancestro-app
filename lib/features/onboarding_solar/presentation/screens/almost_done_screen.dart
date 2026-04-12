@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../providers/solar_onboarding_notifier.dart';
@@ -20,6 +21,7 @@ class _AlmostDoneScreenState extends ConsumerState<AlmostDoneScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -38,7 +40,7 @@ class _AlmostDoneScreenState extends ConsumerState<AlmostDoneScreen> {
                 child: Center(
                   child: Column(
                     children: [
-                      const SizedBox(height: 48),
+                      SizedBox(height: r.spacingXL),
                       Container(
                         width: 80,
                         height: 80,
@@ -52,13 +54,13 @@ class _AlmostDoneScreenState extends ConsumerState<AlmostDoneScreen> {
                           color: AppColors.primary,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: r.spacingLG),
                       Text(
                         'Just one more step!',
                         style: AppTypography.heading
                             .copyWith(color: AppColors.textPrimary),
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: r.spacingSM),
                       Text(
                         'We have everything we need to generate '
                         'your personalized solar proposal.',

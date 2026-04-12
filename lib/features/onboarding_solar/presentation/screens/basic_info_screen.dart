@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_input.dart';
@@ -37,6 +38,7 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -65,14 +67,14 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
                       style: AppTypography.heading
                           .copyWith(color: AppColors.textPrimary),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: r.spacingLG),
                     AncestroInput(
                       label: 'Full Name',
                       hint: 'John Doe',
                       controller: _nameController,
                       prefixIcon: Icons.person_outline,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Phone Number',
                       hint: '(555) 000-0000',
@@ -80,7 +82,7 @@ class _BasicInfoScreenState extends ConsumerState<BasicInfoScreen> {
                       prefixIcon: Icons.phone_outlined,
                       keyboardType: TextInputType.phone,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: r.spacingMD),
                     AncestroInput(
                       label: 'Property Address',
                       hint: '123 Main St, City, State',

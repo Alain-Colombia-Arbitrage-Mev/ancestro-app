@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design/app_colors.dart';
 import '../../../../core/design/app_typography.dart';
+import '../../../../core/design/app_responsive.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/widgets/ancestro_button.dart';
 import '../../../../core/widgets/ancestro_card.dart';
@@ -32,6 +33,7 @@ class _AgreementsScreenState extends ConsumerState<AgreementsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final r = AppResponsive(context);
     final state = ref.watch(solarOnboardingProvider);
     final allAccepted =
         state.agreements.isNotEmpty && state.agreements.every((a) => a.accepted);
@@ -63,7 +65,7 @@ class _AgreementsScreenState extends ConsumerState<AgreementsScreen> {
                       child: ListView.separated(
                         itemCount: state.agreements.length,
                         separatorBuilder: (_, _) =>
-                            const SizedBox(height: 12),
+                            SizedBox(height: r.spacingSM),
                         itemBuilder: (context, index) {
                           final agreement = state.agreements[index];
                           return AncestroCard(
