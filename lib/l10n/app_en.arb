@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appName": "Ancestro",
+  "welcomeTitle": "Welcome to Ancestro",
+  "welcomeSubtitle": "Energy. Storage. Mobility. Unified",
+  "login": "Log In",
+  "signup": "Sign Up",
+  "email": "Email address",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "or": "OR",
+  "next": "Next",
+  "back": "Back",
+  "confirm": "Confirm",
+  "submit": "Submit",
+  "cancel": "Cancel"
+}
