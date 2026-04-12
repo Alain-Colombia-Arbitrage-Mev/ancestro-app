@@ -19,16 +19,28 @@ class _ChatScreenState extends State<ChatScreen> {
   final _chatApi = ChatApi();
   final List<ChatMessage> _messages = [];
   bool _isSending = false;
+  bool _isLoadingConfig = true;
+  String _botName = 'Ancestro Support';
 
   @override
   void initState() {
     super.initState();
-    // Welcome message
-    _messages.add(ChatMessage(
-      text: 'Hi! How can I help you today?',
-      isUser: false,
-      timestamp: DateTime.now(),
-    ));
+    _loadConfig();
+  }
+
+  Future<void> _loadConfig() async {
+    final config = await _chatApi.getConfig();
+    if (mounted) {
+      setState(() {
+        _botName = config.botName;
+        _messages.add(ChatMessage(
+          text: config.introMessage,
+          isUser: false,
+          timestamp: DateTime.now(),
+        ));
+        _isLoadingConfig = false;
+      });
+    }
   }
 
   @override
@@ -67,9 +79,7 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollToBottom();
 
     try {
-      final history = _messages
-          .map((m) => m.toHistoryEntry())
-          .toList();
+      final history = _messages.map((m) => m.toHistoryEntry()).toList();
 
       final response = await _chatApi.sendMessage(
         message: text,
@@ -116,27 +126,30 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Row(
           children: [
             Container(
-              width: 32,
-              height: 32,
+              width: 36,
+              height: 36,
               decoration: const BoxDecoration(
                 color: Color(0xFF2D92DC),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.support_agent, color: Colors.white, size: 18),
+              child: const Icon(Icons.support_agent, color: Colors.white, size: 20),
             ),
             const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Ancestro Support',
-                  style: AppTypography.bodyMedium.copyWith(color: AppColors.textPrimary),
-                ),
-                Text(
-                  'Online',
-                  style: AppTypography.caption.copyWith(color: AppColors.success),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _botName,
+                    style: AppTypography.bodyMedium.copyWith(color: AppColors.textPrimary),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    'Online',
+                    style: AppTypography.caption.copyWith(color: AppColors.success),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -145,20 +158,24 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           // Messages
           Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              itemCount: _messages.length + (_isSending ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index == _messages.length && _isSending) {
-                  return _buildTypingIndicator();
-                }
-                return _buildMessageBubble(_messages[index]);
-              },
-            ),
+            child: _isLoadingConfig
+                ? const Center(
+                    child: CircularProgressIndicator(color: AppColors.primary),
+                  )
+                : ListView.builder(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    itemCount: _messages.length + (_isSending ? 1 : 0),
+                    itemBuilder: (context, index) {
+                      if (index == _messages.length && _isSending) {
+                        return _buildTypingIndicator();
+                      }
+                      return _buildMessageBubble(_messages[index]);
+                    },
+                  ),
           ),
 
-          // Input
+          // Input bar
           Container(
             padding: EdgeInsets.fromLTRB(
               16,
@@ -166,7 +183,7 @@ class _ChatScreenState extends State<ChatScreen> {
               16,
               12 + MediaQuery.of(context).viewPadding.bottom,
             ),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.surface,
               border: Border(
                 top: BorderSide(color: AppColors.surfaceVariant, width: 0.5),
@@ -209,7 +226,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 const SizedBox(width: 8),
                 GestureDetector(
-                  onTap: _sendMessage,
+                  onTap: _isSending ? null : _sendMessage,
                   child: Container(
                     width: 44,
                     height: 44,
@@ -234,20 +251,18 @@ class _ChatScreenState extends State<ChatScreen> {
     return Align(
       alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width * 0.75,
+          maxWidth: MediaQuery.of(context).size.width * 0.78,
         ),
         decoration: BoxDecoration(
-          color: message.isUser
-              ? const Color(0xFF2D92DC)
-              : AppColors.surface,
+          color: message.isUser ? const Color(0xFF2D92DC) : AppColors.surface,
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(16),
-            topRight: const Radius.circular(16),
-            bottomLeft: Radius.circular(message.isUser ? 16 : 4),
-            bottomRight: Radius.circular(message.isUser ? 4 : 16),
+            topLeft: const Radius.circular(18),
+            topRight: const Radius.circular(18),
+            bottomLeft: Radius.circular(message.isUser ? 18 : 4),
+            bottomRight: Radius.circular(message.isUser ? 4 : 18),
           ),
           border: message.isUser
               ? null
@@ -269,25 +284,25 @@ class _ChatScreenState extends State<ChatScreen> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
-            bottomRight: Radius.circular(16),
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+            bottomRight: Radius.circular(18),
             bottomLeft: Radius.circular(4),
           ),
           border: Border.all(color: AppColors.surfaceVariant, width: 0.5),
         ),
-        child: Row(
+        child: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             _TypingDot(delay: 0),
-            const SizedBox(width: 4),
+            SizedBox(width: 5),
             _TypingDot(delay: 150),
-            const SizedBox(width: 4),
+            SizedBox(width: 5),
             _TypingDot(delay: 300),
           ],
         ),
@@ -304,7 +319,8 @@ class _TypingDot extends StatefulWidget {
   State<_TypingDot> createState() => _TypingDotState();
 }
 
-class _TypingDotState extends State<_TypingDot> with SingleTickerProviderStateMixin {
+class _TypingDotState extends State<_TypingDot>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
 
