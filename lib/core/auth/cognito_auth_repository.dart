@@ -67,6 +67,8 @@ class CognitoAuthRepository implements AuthRepository {
     if (msg.contains('network') || msg.contains('socketexception')) {
       return 'No internet connection. Please check your network';
     }
+    // Show actual error in debug for troubleshooting
+    if (msg.length > 10) return error.toString();
     return 'Something went wrong. Please try again';
   }
 
@@ -170,19 +172,33 @@ class CognitoAuthRepository implements AuthRepository {
     String? referralCode,
   }) async {
     try {
+      // Only include email as required attribute
+      // Custom attributes are optional — only add if they exist in the pool
       final userAttributes = [
         AttributeArg(name: 'email', value: email),
-        AttributeArg(name: 'custom:role', value: role == UserRole.partner ? 'partner' : 'customer'),
-        if (referralCode != null && referralCode.isNotEmpty)
-          AttributeArg(name: 'custom:referredBy', value: referralCode),
-        AttributeArg(name: 'custom:onboardingComplete', value: 'false'),
       ];
 
-      final result = await _userPool.signUp(
-        email,
-        password,
-        userAttributes: userAttributes,
-      );
+      // Try with custom attributes first, fall back to email-only
+      CognitoUserPoolData result;
+      try {
+        result = await _userPool.signUp(
+          email,
+          password,
+          userAttributes: [
+            ...userAttributes,
+            AttributeArg(name: 'custom:role', value: role == UserRole.partner ? 'partner' : 'customer'),
+            if (referralCode != null && referralCode.isNotEmpty)
+              AttributeArg(name: 'custom:referredBy', value: referralCode),
+          ],
+        );
+      } catch (_) {
+        // Custom attributes don't exist in pool — sign up with email only
+        result = await _userPool.signUp(
+          email,
+          password,
+          userAttributes: userAttributes,
+        );
+      }
 
       return AuthUser(
         id: result.userSub ?? '',
@@ -194,6 +210,7 @@ class CognitoAuthRepository implements AuthRepository {
     } on CognitoClientException catch (e) {
       throw CognitoAuthException(_mapCognitoError(e));
     } catch (e) {
+      if (e is CognitoAuthException) rethrow;
       throw CognitoAuthException(_mapCognitoError(e));
     }
   }
