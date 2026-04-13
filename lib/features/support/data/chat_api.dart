@@ -14,14 +14,14 @@ class ChatConfig {
   factory ChatConfig.fromJson(Map<String, dynamic> json) {
     final widgetConfig = json['widgetConfig'] as Map<String, dynamic>? ?? {};
     return ChatConfig(
-      botName: (json['botName'] as String?) ?? 'Ancestro Support',
+      botName: (json['botName'] as String?) ?? 'Solari',
       introMessage: (json['introMessage'] as String?) ?? 'Hi! How can I help you today?',
       primaryColor: (widgetConfig['primaryColor'] as String?) ?? '#2d92dc',
     );
   }
 
   static const fallback = ChatConfig(
-    botName: 'Ancestro Support',
+    botName: 'Solari',
     introMessage: 'Hi! How can I help you today?',
     primaryColor: '#2d92dc',
   );

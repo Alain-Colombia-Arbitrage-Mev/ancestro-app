@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = [];
   bool _isSending = false;
   bool _isLoadingConfig = true;
-  String _botName = 'Ancestro Support';
+  String _botName = 'Solari';
 
   // User info
   String? _userName;
